@@ -1,0 +1,20 @@
+<view class="container page-index">
+  <view class="hero">
+    <view class="logo-ring"><text class="logo-emoji">🌿</text></view>
+    <text class="title">职场清醒笔记</text>
+    <text class="subtitle">职场情绪管理与自我成长工具</text>
+  </view>
+  <view class="feature-list">
+    <view class="feature-card" wx:for="{{features}}" wx:key="title">
+      <text class="feature-icon">{{item.icon}}</text>
+      <view class="feature-info">
+        <text class="feature-title">{{item.title}}</text>
+        <text class="feature-desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="bottom-area">
+    <button class="btn-primary" bindtap="goLogin">微信授权登录</button>
+    <text class="agreement">登录即表示同意《用户协议》和《隐私政策》</text>
+  </view>
+</view>

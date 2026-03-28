@@ -1,0 +1,7 @@
+<view class="webview-wrap">
+  <view class="loading-mask" wx:if="{{!loaded}}">
+    <view class="spinner"></view>
+    <text class="loading-text">正在加载应用…</text>
+  </view>
+  <web-view src="{{webviewUrl}}" bindload="onWebViewLoad" binderror="onWebViewError" bindmessage="onWebViewMessage"></web-view>
+</view>
