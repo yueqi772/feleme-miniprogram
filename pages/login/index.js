@@ -1,19 +1,17 @@
 Page({
   data: { loading: false, errorMsg: '' },
 
-  // ⚠️ 关键：wx.getUserProfile 必须由用户点击直接触发，
-  // handleLogin 必须是按钮的 bindtap 的直接处理函数，中间不能有任何异步步骤。
-  // wx.login 在 getUserProfile 成功后再调用（拿到 userInfo 之后才调 login），
-  // 这样手势链路只经过一次直接函数调用，符合微信的要求。
+  // 使用 wx.getUserInfo：直接触发，无频率限制（推荐方式）
+  // nickname 和 avatarUrl 同样可以拿到
   handleLogin() {
     this.setData({ loading: true, errorMsg: '' });
 
-    wx.getUserProfile({
-      desc: '用于展示您的个人信息',
-      success: (profileRes) => {
-        const userInfo = profileRes.userInfo;
+    wx.getUserInfo({
+      lang: 'zh_CN',
+      success: (userInfoRes) => {
+        const userInfo = userInfoRes.userInfo || {};
 
-        // 拿到 userInfo 后，再调 wx.login 获取 code（此时不限制异步）
+        // userInfo 拿到后，再调 wx.login 获取 code
         wx.login({
           success: (loginRes) => {
             const loginData = {
@@ -32,7 +30,7 @@ Page({
             });
           },
           fail: () => {
-            // login 失败但 userInfo 已拿到，仍可使用
+            // code 没拿到，但仍用 userInfo 数据登录（nickname/avatar 已够用）
             const loginData = {
               code: '',
               nickname: userInfo.nickName || '微信用户',
@@ -52,7 +50,7 @@ Page({
       },
       fail: (e) => {
         const msg = e?.errMsg || '';
-        if (msg.includes('auth deny') || msg.includes('cancel')) {
+        if (msg.includes('auth deny') || msg.includes('cancel') || msg.includes('authorize')) {
           this.setData({ loading: false, errorMsg: '您已取消授权，可重新点击登录' });
         } else {
           this.setData({ loading: false, errorMsg: e?.errMsg || '获取用户信息失败' });
