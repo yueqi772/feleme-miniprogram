@@ -4,8 +4,9 @@
  * 该 SDK 用于在 H5 页面中与微信小程序 WebView 进行通信，
  * 实现登录态传递、操作日志记录等功能。
  *
- * @version 1.0.0
+ * @version 1.1.0
  * @date 2026-04-01
+ * 新增：自动处理底部安全区域，避免与小程序 tabBar 重叠
  */
 
 (function (global, factory) {
@@ -17,12 +18,12 @@
 
   // 操作类型枚举
   const OPERATION_TYPES = {
-    PAGE_VIEW: 'page_view',           // 页面浏览
-    BUTTON_CLICK: 'button_click',     // 按钮点击
-    FORM_SUBMIT: 'form_submit',       // 表单提交
-    API_CALL: 'api_call',             // API 调用
-    ERROR: 'error',                   // 错误发生
-    CUSTOM: 'custom',                 // 自定义事件
+    PAGE_VIEW: 'page_view',
+    BUTTON_CLICK: 'button_click',
+    FORM_SUBMIT: 'form_submit',
+    API_CALL: 'api_call',
+    ERROR: 'error',
+    CUSTOM: 'custom',
   };
 
   // 默认配置
@@ -34,6 +35,9 @@
     autoTrackClick: false,
     batchSize: 10,
     batchInterval: 3000,
+    autoFixBottomOverlap: true,  // 新增：自动修复底部重叠问题
+    tabBarHeight: 50,            // 小程序 tabBar 高度（rpx 转换后约 50px）
+    safeAreaBottom: true,        // 新增：添加底部安全区域
     onLoginSuccess: null,
     onLoginFail: null,
     onReady: null,
@@ -69,6 +73,7 @@
         this.setupMessageListener();
         this.parseUrlParams();
         this.startBatchTimer();
+        this.fixBottomOverlap();
         this.log('MiniProgramBridge 已初始化');
       } else {
         this.log('运行在非小程序环境');
@@ -88,6 +93,104 @@
       const fromMp = urlParams.get('from') === 'miniprogram';
 
       return isMiniProgram || fromMp || isWx;
+    }
+
+    /**
+     * 修复底部重叠问题
+     * 在小程序环境中，H5 页面的底部导航栏可能会被 tabBar 遮挡
+     */
+    fixBottomOverlap() {
+      if (!this.config.autoFixBottomOverlap) return;
+
+      // 检测是否是来自小程序的访问
+      const urlParams = new URLSearchParams(window.location.search);
+      const fromMp = urlParams.get('from') === 'miniprogram';
+
+      if (!fromMp && !this.isMiniProgram) return;
+
+      // 等待 DOM 加载完成
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => this.applyBottomFix());
+      } else {
+        this.applyBottomFix();
+      }
+    }
+
+    /**
+     * 应用底部修复
+     */
+    applyBottomFix() {
+      // 创建一个 style 元素
+      const styleId = 'miniprogram-bridge-bottom-fix';
+      let styleEl = document.getElementById(styleId);
+
+      if (!styleEl) {
+        styleEl = document.createElement('style');
+        styleEl.id = styleId;
+        document.head.appendChild(styleEl);
+      }
+
+      // 设置样式：添加底部安全区域padding
+      const safeAreaPadding = this.config.safeAreaBottom ? this.config.tabBarHeight : 0;
+
+      styleEl.textContent = `
+        /* 修复底部导航栏被 tabBar 遮挡的问题 */
+        body {
+          padding-bottom: ${safeAreaPadding}px !important;
+          padding-bottom: env(safe-area-inset-bottom, ${safeAreaPadding}px) !important;
+          padding-bottom: constant(safe-area-inset-bottom, ${safeAreaPadding}px) !important;
+        }
+
+        /* 修复固定定位的底部导航栏 */
+        .tab-bar,
+        .tabbar,
+        .bottom-nav,
+        .bottom-navigation,
+        .footer-nav,
+        .main-tab,
+        .h5-tabbar,
+        [class*="bottom-nav"],
+        [class*="tab-bar"],
+        [class*="tabbar"] {
+          bottom: ${safeAreaPadding}px !important;
+          bottom: calc(env(safe-area-inset-bottom) + ${safeAreaPadding}px) !important;
+        }
+
+        /* 修复 iPhone X 等有底部安全区域的设备 */
+        @supports (padding-bottom: env(safe-area-inset-bottom)) {
+          .tab-bar,
+          .tabbar,
+          .bottom-nav,
+          .bottom-navigation,
+          .footer-nav,
+          .main-tab,
+          .h5-tabbar,
+          [class*="bottom-nav"],
+          [class*="tab-bar"],
+          [class*="tabbar"] {
+            bottom: calc(env(safe-area-inset-bottom) + ${safeAreaPadding}px) !important;
+          }
+        }
+
+        /* 确保 WebView 内容不被 tabBar 遮挡 */
+        #app,
+        .app-container,
+        .main-content {
+          padding-bottom: ${safeAreaPadding + 10}px !important;
+        }
+      `;
+
+      this.log('已应用底部安全区域修复，padding:', safeAreaPadding);
+    }
+
+    /**
+     * 移除底部修复
+     */
+    removeBottomFix() {
+      const styleEl = document.getElementById('miniprogram-bridge-bottom-fix');
+      if (styleEl) {
+        styleEl.remove();
+      }
     }
 
     /**
@@ -552,6 +655,7 @@
     destroy() {
       this.stopBatchTimer();
       this.flushBatch();
+      this.removeBottomFix();
       this.messageQueue = [];
       this.pendingCallbacks = {};
     }
