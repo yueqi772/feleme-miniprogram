@@ -1,9 +1,12 @@
 /**
- * 微信云函数 - 用户登录
- * 功能：
- * 1. 通过 wx.cloud.callContainer 获取 openid
- * 2. 保存用户信息到云数据库
- * 3. 返回用户 ID 和登录凭证
+ * 微信云函数 - 用户登录（简化版）
+ *
+ * 简化登录流程：
+ * 1. 直接获取 openid（云函数环境自带）
+ * 2. 保存/更新用户信息
+ * 3. 返回登录凭证
+ *
+ * 无需前端传递 code，无需用户授权
  */
 const cloud = require('wx-server-sdk');
 
@@ -14,58 +17,11 @@ cloud.init({
 const db = cloud.database();
 
 /**
- * 通过 code 向微信接口换取 openid
- * @param {string} code - 微信登录凭证
- */
-async function getOpenidByCode(code) {
-  const appid = cloud.getWXContext().APPID;
-  const secret = process.env.WECHAT_APP_SECRET;
-
-  // 优先使用云托管获取 openid（推荐方式）
-  try {
-    const result = await cloud.callContainer({
-      config: {
-        env: cloud.DYNAMIC_CURRENT_ENV,
-      },
-      service: 'weixin', // 微信接口服务
-      path: '/getOpenid',
-      method: 'POST',
-      header: {
-        'content-type': 'application/json',
-      },
-      data: {
-        appid,
-        code,
-      },
-    });
-    return result.openid;
-  } catch (e) {
-    console.log('云托管调用失败，尝试直接请求微信接口');
-  }
-
-  // 备用方案：直接请求微信接口（需要在云函数环境配置中设置 secret）
-  // 注意：secret 不应在客户端暴露，此处仅作备用
-  const wxUrl = `https://api.weixin.qq.com/sns/jscode2session?appid=${appid}&secret=${secret}&js_code=${code}&grant_type=authorization_code`;
-
-  const httpResult = await cloud.httpRequest({
-    url: wxUrl,
-    method: 'GET',
-  });
-
-  const data = httpResult.data;
-  if (data.errcode) {
-    throw new Error(`获取 openid 失败: ${data.errmsg}`);
-  }
-
-  return data.openid;
-}
-
-/**
  * 保存或更新用户信息
  * @param {object} userInfo - 用户信息
  */
 async function saveUserInfo(userInfo) {
-  const { openid, nickname, avatarUrl, gender, province, city, unionid } = userInfo;
+  const { openid, nickname, avatarUrl, gender, province, city } = userInfo;
 
   // 查询是否已存在该用户
   const existUsers = await db.collection('users').where({
@@ -73,9 +29,10 @@ async function saveUserInfo(userInfo) {
   }).limit(1).get();
 
   const now = new Date();
+
+  // 构建用户数据，缺失字段使用默认值
   const userData = {
     openid,
-    unionid: unionid || '',
     nickname: nickname || '微信用户',
     avatarUrl: avatarUrl || '',
     gender: gender || 0,
@@ -88,15 +45,20 @@ async function saveUserInfo(userInfo) {
   let userId;
 
   if (existUsers.data && existUsers.data.length > 0) {
-    // 用户已存在，更新信息
+    // 用户已存在，更新登录信息
     userId = existUsers.data[0]._id;
+
+    // 如果新登录没有昵称头像，保留原有的
+    const existingUser = existUsers.data[0];
+    if (!nickname && existingUser.nickname) {
+      userData.nickname = existingUser.nickname;
+    }
+    if (!avatarUrl && existingUser.avatarUrl) {
+      userData.avatarUrl = existingUser.avatarUrl;
+    }
+
     await db.collection('users').doc(userId).update({
       data: {
-        nickname: userData.nickname,
-        avatarUrl: userData.avatarUrl,
-        gender: userData.gender,
-        province: userData.province,
-        city: userData.city,
         lastLoginTime: userData.lastLoginTime,
         updateTime: userData.updateTime,
       },
@@ -118,15 +80,11 @@ async function saveUserInfo(userInfo) {
 }
 
 exports.main = async (event, context) => {
-  const { code, nickname, avatarUrl, gender, province, city } = event;
+  const { nickname, avatarUrl, gender, province, city } = event;
 
   try {
-    // Step 1: 获取 openid
-    let openid = cloud.getWXContext().OPENID;
-
-    if (!openid && code) {
-      openid = await getOpenidByCode(code);
-    }
+    // Step 1: 直接获取 openid（云函数环境自带）
+    const openid = cloud.getWXContext().OPENID;
 
     if (!openid) {
       return {
@@ -145,11 +103,11 @@ exports.main = async (event, context) => {
       city,
     });
 
-    // Step 3: 生成登录会话 token（简化版，实际可用 JWT）
+    // Step 3: 生成登录凭证
     const loginToken = Buffer.from(JSON.stringify({
       openid,
       userId: userInfo.userId,
-      exp: Date.now() + 7 * 24 * 60 * 60 * 1000, // 7天过期
+      exp: Date.now() + 7 * 24 * 60 * 60 * 1000, // 7天有效期
     })).toString('base64');
 
     return {
