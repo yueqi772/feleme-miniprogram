@@ -1,10 +1,24 @@
 import { Component } from 'react';
-import { View, Text, Button, Image } from '@tarojs/components';
-import { useRouter } from '@tarojs/taro';
+import { View, Text, Button } from '@tarojs/components';
+import Taro from '@tarojs/taro';
 import './index.scss';
+
+// 云函数配置
+const CLOUD_FUNCTION = {
+  LOGIN: 'login', // 登录云函数名称
+};
 
 export default class Login extends Component {
   state = { loading: false, error: '' };
+
+  componentDidMount() {
+    // 检查是否已登录
+    const loginResult = Taro.getStorageSync('feleme_login_result');
+    if (loginResult && loginResult.loginToken) {
+      // 已登录，直接跳转
+      this.navigateToWebView(loginResult);
+    }
+  }
 
   async handleLogin() {
     this.setState({ loading: true, error: '' });
@@ -12,7 +26,10 @@ export default class Login extends Component {
     try {
       // Step 1: 获取微信登录凭证（code）
       const loginRes = await new Promise((resolve, reject) => {
-        wx.login({ success: resolve, fail: reject });
+        Taro.login({
+          success: resolve,
+          fail: reject,
+        });
       });
       const { code } = loginRes as any;
 
@@ -23,7 +40,7 @@ export default class Login extends Component {
 
       // Step 2: 获取用户基本信息（昵称、头像）
       const profileRes = await new Promise((resolve, reject) => {
-        wx.getUserProfile({
+        Taro.getUserProfile({
           desc: '用于展示您的个人信息',
           success: resolve,
           fail: reject,
@@ -31,34 +48,78 @@ export default class Login extends Component {
       });
       const userInfo = (profileRes as any).userInfo;
 
-      // Step 3: 构建登录数据（实际生产中 code 应发往你的后端换 openid）
-      const loginData = {
-        code,
-        nickname: userInfo.nickName,
-        avatarUrl: userInfo.avatarUrl,
-        gender: userInfo.gender, // 1=男, 2=女
-        province: userInfo.province,
-        city: userInfo.city,
-        loginTime: Date.now(),
-      };
+      // Step 3: 调用云函数登录
+      Taro.showLoading({ title: '登录中…' });
 
-      // Step 4: 存储登录态
-      wx.setStorageSync('feleme_login', loginData);
-
-      // Step 5: 跳转 WebView 页面，携带登录数据
-      const encoded = encodeURIComponent(JSON.stringify(loginData));
-      wx.redirectTo({
-        url: `/pages/webview/index?loginData=${encoded}&from=miniprogram`,
+      const cloudResult = await Taro.cloud.callFunction({
+        name: CLOUD_FUNCTION.LOGIN,
+        data: {
+          code,
+          nickname: userInfo.nickName,
+          avatarUrl: userInfo.avatarUrl,
+          gender: userInfo.gender,
+          province: userInfo.province,
+          city: userInfo.city,
+        },
       });
+
+      Taro.hideLoading();
+
+      const result = cloudResult.result as any;
+
+      if (!result.success) {
+        this.setState({ loading: false, error: result.error || '登录失败' });
+        return;
+      }
+
+      // Step 4: 保存登录结果
+      const loginData = result.data;
+      Taro.setStorageSync('feleme_login_result', loginData);
+
+      // Step 5: 跳转 WebView 页面
+      this.navigateToWebView(loginData);
     } catch (err: any) {
+      Taro.hideLoading();
       console.error('登录失败', err);
-      const msg = err?.errMsg || '';
-      if (msg.includes('auth deny') || msg.includes('cancel')) {
+
+      // 判断错误类型
+      const errMsg = err?.errMsg || err?.message || '';
+
+      if (errMsg.includes('auth deny') || errMsg.includes('cancel') || errMsg.includes('authorize')) {
         this.setState({ loading: false, error: '您已拒绝授权，可重新点击登录' });
+      } else if (errMsg.includes('cloud')) {
+        this.setState({ loading: false, error: '云服务连接失败，请检查网络' });
       } else {
-        this.setState({ loading: false, error: err?.errMsg || '登录失败，请重试' });
+        this.setState({ loading: false, error: errMsg || '登录失败，请重试' });
       }
     }
+  }
+
+  /**
+   * 跳转到 WebView 页面
+   */
+  navigateToWebView(loginData: any) {
+    const params = new URLSearchParams({
+      __mp_login: '1',
+      userId: loginData.userId || '',
+      openid: loginData.openid || '',
+      nickname: loginData.nickname || '',
+      avatar: loginData.avatarUrl || '',
+      gender: String(loginData.gender || 0),
+      province: loginData.province || '',
+      city: loginData.city || '',
+      loginToken: loginData.loginToken || '',
+      from: 'miniprogram',
+      _t: String(Date.now()),
+    });
+
+    Taro.redirectTo({
+      url: `/pages/webview/index?${params.toString()}`,
+    });
+  }
+
+  goBack() {
+    Taro.navigateBack();
   }
 
   render() {
@@ -80,12 +141,12 @@ export default class Login extends Component {
             <Text className="info-text">我们仅获取您的昵称和头像</Text>
           </View>
           <View className="info-row">
-            <Text className="info-icon">🚫</Text>
-            <Text className="info-text">不会获取手机号、位置等敏感信息</Text>
+            <Text className="info-icon">☁️</Text>
+            <Text className="info-text">数据安全存储在微信云端</Text>
           </View>
           <View className="info-row">
             <Text className="info-icon">📴</Text>
-            <Text className="info-text">数据仅存储在本地和您的账号下</Text>
+            <Text className="info-text">不会获取手机号、位置等敏感信息</Text>
           </View>
         </View>
 
@@ -103,7 +164,7 @@ export default class Login extends Component {
           >
             {loading ? '登录中…' : '微信授权登录'}
           </Button>
-          <Button className="btn-back" onClick={() => wx.navigateBack()}>
+          <Button className="btn-back" onClick={this.goBack}>
             返回
           </Button>
         </View>
