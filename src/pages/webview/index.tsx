@@ -29,6 +29,11 @@ export default class WebViewPage extends Component {
   };
 
   componentDidMount() {
+    // 进入页面时隐藏 tabBar，让 H5 全屏展示
+    Taro.hideTabBar({
+      animation: false, // 不需要动画
+    });
+
     // 从页面参数获取登录数据
     const loginResult = Taro.getStorageSync('feleme_login_result');
 
@@ -78,6 +83,13 @@ export default class WebViewPage extends Component {
       const targetUrl = this.buildWebViewUrl(loginResult);
       this.setState({ src: targetUrl });
     }
+  }
+
+  componentWillUnmount() {
+    // 离开页面时恢复 tabBar
+    Taro.showTabBar({
+      animation: false,
+    });
   }
 
   /**
