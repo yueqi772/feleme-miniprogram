@@ -1,61 +1,93 @@
 Page({
   data: { loading: false, errorMsg: '' },
 
-  // 使用 wx.getUserInfo：直接触发，无频率限制（推荐方式）
-  // nickname 和 avatarUrl 同样可以拿到
+  onLoad() {
+    // 检查是否已登录
+    const loginResult = wx.getStorageSync('feleme_login_result');
+    if (loginResult && loginResult.loginToken) {
+      this.navigateToWebView(loginResult);
+    }
+  },
+
   handleLogin() {
+    console.log('开始登录...');
     this.setData({ loading: true, errorMsg: '' });
 
-    wx.getUserInfo({
-      lang: 'zh_CN',
-      success: (userInfoRes) => {
-        const userInfo = userInfoRes.userInfo || {};
+    wx.login({
+      success: (loginRes) => {
+        const { code } = loginRes;
+        if (!code) {
+          this.setData({ loading: false, errorMsg: '获取登录凭证失败，请重试' });
+          return;
+        }
+        console.log('获取code成功:', code);
+        wx.showLoading({ title: '登录中…' });
 
-        // userInfo 拿到后，再调 wx.login 获取 code
-        wx.login({
-          success: (loginRes) => {
-            const loginData = {
-              code: loginRes.code || '',
-              nickname: userInfo.nickName || '微信用户',
-              avatarUrl: userInfo.avatarUrl || '',
-              gender: userInfo.gender || 0,
-              province: userInfo.province || '',
-              city: userInfo.city || '',
-              loginTime: Date.now(),
-            };
-            wx.setStorageSync('feleme_login', loginData);
-            const encoded = encodeURIComponent(JSON.stringify(loginData));
-            wx.redirectTo({
-              url: `/pages/webview/index?loginData=${encoded}&from=miniprogram`,
-            });
+        // 调用云函数 login，换取 openid
+        wx.cloud.callFunction({
+          name: 'login',               // 云函数名（与 cloudfunctions/login 目录名一致）
+          env: 'cloudbase-3g22c9ce5bcf0e55', // 云开发环境 ID
+          data: { code },
+          success: (cloudRes) => {
+            wx.hideLoading();
+            console.log('云函数返回:', cloudRes);
+            const result = cloudRes.result;
+
+            if (result && result.success && result.data && result.data.openid) {
+              // 登录成功，组装用户数据，跳转 WebView
+              const { openid, unionid } = result.data;
+              const loginData = {
+                openid,
+                unionid: unionid || '',
+                nickname: '微信用户',
+                avatarUrl: '',
+                loginTime: Date.now(),
+                loginToken: openid, // 用 openid 作为登录标识
+              };
+              wx.setStorageSync('feleme_login_result', loginData);
+              console.log('登录成功，跳转 WebView...');
+              this.navigateToWebView(loginData);
+            } else {
+              // 云函数返回数据异常，使用备用本地登录
+              console.log('云函数返回异常，使用备用登录...', result);
+              this.fallbackLogin(code);
+            }
           },
-          fail: () => {
-            // code 没拿到，但仍用 userInfo 数据登录（nickname/avatar 已够用）
-            const loginData = {
-              code: '',
-              nickname: userInfo.nickName || '微信用户',
-              avatarUrl: userInfo.avatarUrl || '',
-              gender: userInfo.gender || 0,
-              province: userInfo.province || '',
-              city: userInfo.city || '',
-              loginTime: Date.now(),
-            };
-            wx.setStorageSync('feleme_login', loginData);
-            const encoded = encodeURIComponent(JSON.stringify(loginData));
-            wx.redirectTo({
-              url: `/pages/webview/index?loginData=${encoded}&from=miniprogram`,
-            });
+          fail: (cloudErr) => {
+            wx.hideLoading();
+            console.error('云函数调用失败:', cloudErr);
+            this.setData({ loading: false, errorMsg: '网络错误，请检查网络后重试' });
           },
         });
       },
-      fail: (e) => {
-        const msg = e?.errMsg || '';
-        if (msg.includes('auth deny') || msg.includes('cancel') || msg.includes('authorize')) {
-          this.setData({ loading: false, errorMsg: '您已取消授权，可重新点击登录' });
-        } else {
-          this.setData({ loading: false, errorMsg: e?.errMsg || '获取用户信息失败' });
-        }
+      fail: (err) => {
+        this.setData({ loading: false, errorMsg: '获取登录凭证失败' });
+        console.error('wx.login 失败:', err);
       },
+    });
+  },
+
+  // 备用登录：直接用 code 作为标识，不依赖云函数
+  fallbackLogin(code) {
+    const loginData = {
+      openid: '',
+      unionid: '',
+      nickname: '微信用户',
+      avatarUrl: '',
+      loginTime: Date.now(),
+      loginToken: 'local_' + Date.now(),
+      note: '本地离线登录，openid 未获取',
+    };
+    wx.setStorageSync('feleme_login_result', loginData);
+    this.navigateToWebView(loginData);
+  },
+
+  navigateToWebView(loginData) {
+    // 清理旧登录态
+    wx.removeStorageSync('feleme_login');
+    const encoded = encodeURIComponent(JSON.stringify(loginData));
+    wx.redirectTo({
+      url: `/pages/webview/index?loginData=${encoded}&from=miniprogram`,
     });
   },
 
