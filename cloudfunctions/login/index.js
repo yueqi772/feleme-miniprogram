@@ -84,7 +84,8 @@ exports.main = async (event, context) => {
 
   try {
     // Step 1: 直接获取 openid（云函数环境自带）
-    const openid = cloud.getWXContext().OPENID;
+    const wxContext = cloud.getWXContext();
+    const openid = wxContext.OPENID;
 
     if (!openid) {
       return {

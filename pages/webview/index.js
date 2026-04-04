@@ -1,5 +1,5 @@
 // ⚠️ 发布时请替换为你的实际 H5 部署域名
-const H5_URL = 'https://yueqi772.github.io/feleme-web/';
+const H5_URL = 'https://vf5xiy7o02h1.space.minimaxi.com/';
 
 Page({
   data: {
