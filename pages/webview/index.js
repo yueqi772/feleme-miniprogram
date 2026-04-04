@@ -71,15 +71,6 @@ Page({
   onWebViewLoad() {
     console.log('WebView 加载完成');
     this.setData({ loaded: true });
-
-    // 通知 H5 页面小程序已准备就绪
-    wx.miniProgram.postMessage({
-      data: {
-        type: 'MP_READY',
-        loaded: true,
-        loginData: this.data.loginData,
-      },
-    });
   },
 
   /**
@@ -102,15 +93,8 @@ Page({
 
     switch (data.type) {
       case 'MP_READY':
-        // H5 页面已准备好，发送登录数据
-        if (this.data.loginData) {
-          wx.miniProgram.postMessage({
-            data: {
-              type: 'LOGIN_DATA',
-              loginData: this.data.loginData,
-            },
-          });
-        }
+        // H5 页面已准备好（登录数据已通过 URL 参数传递，无需再次发送）
+        console.log('H5 已就绪');
         break;
 
       case 'H5_REQUEST_LOGIN':
@@ -124,13 +108,8 @@ Page({
         break;
 
       case 'GET_USER_INFO':
-        // H5 页面请求获取用户信息
-        wx.miniProgram.postMessage({
-          data: {
-            type: 'USER_INFO',
-            userInfo: this.data.loginData,
-          },
-        });
+        // H5 页面请求用户信息（小程序无法直接向 WebView 推送，忽略）
+        console.log('收到 GET_USER_INFO 请求');
         break;
 
       case 'TOAST':
@@ -152,13 +131,6 @@ Page({
   handleSaveOperationLog(logs) {
     if (!this.data.loginData?.loginToken) {
       console.error('未登录，无法保存操作日志');
-      wx.miniProgram.postMessage({
-        data: {
-          type: 'SAVE_OPERATION_LOG_RESULT',
-          success: false,
-          error: '未登录',
-        },
-      });
       return;
     }
 
@@ -170,23 +142,9 @@ Page({
       },
       success: (res) => {
         console.log('保存操作日志成功:', res);
-        wx.miniProgram.postMessage({
-          data: {
-            type: 'SAVE_OPERATION_LOG_RESULT',
-            success: true,
-            data: res.result,
-          },
-        });
       },
       fail: (err) => {
         console.error('保存操作日志失败:', err);
-        wx.miniProgram.postMessage({
-          data: {
-            type: 'SAVE_OPERATION_LOG_RESULT',
-            success: false,
-            error: err.message || '保存失败',
-          },
-        });
       },
     });
   },
