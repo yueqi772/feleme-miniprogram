@@ -1,5 +1,5 @@
 // ⚠️ 发布时请替换为你的实际 H5 部署域名
-const H5_BASE = 'https://h6zhl9z37df0.space.minimaxi.com/';
+const H5_BASE = 'https://4wc7blrk6y2a.space.minimaxi.com/';
 
 Page({
   data: { webviewUrl: H5_BASE, loaded: false },
@@ -15,6 +15,8 @@ Page({
           gender: String(data.gender || 0),
           province: data.province || '',
           city: data.city || '',
+          openid: data.openid || '',
+          unionid: data.unionid || '',
           from: 'miniprogram',
           _t: String(Date.now()),
         });

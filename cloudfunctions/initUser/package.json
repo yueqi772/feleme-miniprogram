@@ -1,0 +1,9 @@
+{
+  "name": "initUser",
+  "version": "1.0.0",
+  "description": "用户初始化云函数（首次登录创建档案）",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}
