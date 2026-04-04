@@ -1,5 +1,5 @@
 // ⚠️ 发布时请替换为你的实际 H5 部署域名
-const H5_URL = 'https://vf5xiy7o02h1.space.minimaxi.com/';
+const H5_URL = 'https://mcsclcr2hfli.space.minimaxi.com/';
 
 Page({
   data: {
@@ -48,6 +48,7 @@ Page({
       __mp_login: '1',
       userId: loginData.userId || '',
       openid: loginData.openid || '',
+      unionid: loginData.unionid || '',
       nickname: loginData.nickname || '微信用户',
       avatar: loginData.avatarUrl || '',
       gender: String(loginData.gender || 0),
@@ -86,7 +87,7 @@ Page({
    * 监听 H5 页面通过 postMessage 发来的消息
    */
   onWebViewMessage(e) {
-    const data = e.detail?.data?.[0];
+    const data = e.detail && e.detail.data && e.detail.data[0];
     console.log('收到H5页面消息:', data);
 
     if (!data) return;
@@ -129,7 +130,7 @@ Page({
    * 保存操作日志到云数据库
    */
   handleSaveOperationLog(logs) {
-    if (!this.data.loginData?.loginToken) {
+    if (!this.data.loginData || !this.data.loginData.loginToken) {
       console.error('未登录，无法保存操作日志');
       return;
     }
@@ -140,10 +141,10 @@ Page({
         token: this.data.loginData.loginToken,
         logs: logs,
       },
-      success: (res) => {
+      success: function(res) {
         console.log('保存操作日志成功:', res);
       },
-      fail: (err) => {
+      fail: function(err) {
         console.error('保存操作日志失败:', err);
       },
     });

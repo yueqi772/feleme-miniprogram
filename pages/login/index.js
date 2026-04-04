@@ -2,7 +2,6 @@ Page({
   data: { loading: false, errorMsg: '' },
 
   onLoad() {
-    // 检查是否已登录
     const loginResult = wx.getStorageSync('feleme_login_result');
     if (loginResult && loginResult.loginToken) {
       this.navigateToWebView(loginResult);
@@ -16,7 +15,7 @@ Page({
     console.log('开始登录...');
     this.setData({ loading: true, errorMsg: '' });
 
-    // Step 1: 获取微信登录凭证
+    // Step 1: 获取 code
     wx.login({
       success: (loginRes) => {
         console.log('获取code成功:', loginRes.code);
@@ -27,37 +26,44 @@ Page({
           return;
         }
 
+        console.log('获取 code 成功:', code);
         wx.showLoading({ title: '登录中…' });
 
-        // Step 2: 调用云函数登录
-        console.log('调用云函数...');
+        // Step 2: 调用 login 云函数获取 openid
         wx.cloud.callFunction({
           name: 'login',
-          data: { code: code },
-          success: (cloudRes) => {
-            console.log('云函数返回:', cloudRes);
+          data: { code },
+          success: async (cloudRes) => {
             wx.hideLoading();
-
             const result = cloudRes.result;
+
             if (result && result.success) {
-              // 登录成功
               const loginData = result.data;
+
+              // Step 3: 尝试初始化用户档案（写入数据库，失败不影响登录）
+              try {
+                const initRes = await wx.cloud.callFunction({
+                  name: 'initUser',
+                  data: { openid: loginData.openid },
+                });
+                console.log('initUser 返回:', initRes);
+              } catch (e) {
+                console.warn('initUser 失败（不影响登录）:', e);
+              }
+
               wx.setStorageSync('feleme_login_result', loginData);
               console.log('登录成功，跳转...');
               this.navigateToWebView(loginData);
             } else {
-              // 云函数返回失败，使用备用登录
-              console.log('云函数失败，使用备用登录...');
-              this.fallbackLogin(code);
+              console.error('login 云函数返回异常:', result);
+              this.setData({ loading: false, errorMsg: result && result.error || '登录失败，请稍后重试' });
             }
           },
           fail: (cloudErr) => {
-            console.error('云函数调用失败:', cloudErr);
             wx.hideLoading();
-            // 云函数调用失败，使用备用登录
-            console.log('使用备用登录方案...');
-            this.fallbackLogin(code);
-          }
+            console.error('login 云函数调用失败:', cloudErr);
+            this.setData({ loading: false, errorMsg: '网络错误，请检查网络后重试' });
+          },
         });
       },
       fail: (err) => {
@@ -68,37 +74,12 @@ Page({
   },
 
   /**
-   * 备用登录方案：不依赖云函数
-   */
-  fallbackLogin(code) {
-    console.log('执行备用登录...');
-
-    const loginData = {
-      userId: 'local_' + Date.now(),
-      openid: '',
-      nickname: '微信用户',
-      avatarUrl: '',
-      gender: 0,
-      province: '',
-      city: '',
-      loginToken: 'local_token_' + Date.now(),
-      loginTime: new Date().toISOString(),
-      isLocalLogin: true,
-    };
-
-    wx.setStorageSync('feleme_login_result', loginData);
-    console.log('备用登录成功，跳转...');
-    this.navigateToWebView(loginData);
-  },
-
-  /**
    * 跳转到 WebView 页面
+   * webview 是 tabBar 页面，必须用 switchTab（不支持 redirectTo 传参）
+   * 登录数据已存入 Storage，webview 页面从 Storage 读取
    */
   navigateToWebView(loginData) {
-    // 将登录数据存入 Storage，webview 页面从 Storage 读取
     wx.setStorageSync('feleme_login_result', loginData);
-
-    // webview 是 tabBar 页面，必须用 switchTab 跳转（不支持传参）
     wx.switchTab({
       url: '/pages/webview/index',
     });
