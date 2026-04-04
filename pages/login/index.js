@@ -95,26 +95,12 @@ Page({
    * 跳转到 WebView 页面
    */
   navigateToWebView(loginData) {
-    const params = {
-      __mp_login: '1',
-      userId: loginData.userId || '',
-      openid: loginData.openid || '',
-      nickname: loginData.nickname || '微信用户',
-      avatar: loginData.avatarUrl || '',
-      gender: String(loginData.gender || 0),
-      province: loginData.province || '',
-      city: loginData.city || '',
-      loginToken: loginData.loginToken || '',
-      from: 'miniprogram',
-      _t: String(Date.now()),
-    };
+    // 将登录数据存入 Storage，webview 页面从 Storage 读取
+    wx.setStorageSync('feleme_login_result', loginData);
 
-    const query = Object.entries(params)
-      .map(([k, v]) => `${k}=${encodeURIComponent(v)}`)
-      .join('&');
-
-    wx.redirectTo({
-      url: `/pages/webview/index?${query}`,
+    // webview 是 tabBar 页面，必须用 switchTab 跳转（不支持传参）
+    wx.switchTab({
+      url: '/pages/webview/index',
     });
   },
 

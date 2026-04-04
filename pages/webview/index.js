@@ -8,37 +8,34 @@ Page({
     loginData: null,
   },
 
-  onLoad(query) {
-    console.log('WebView页面加载，参数:', query);
+  onLoad() {
+    console.log('WebView页面加载');
 
     // 隐藏 tabBar
     wx.hideTabBar({ animation: false });
 
-    // 优先从 URL 参数获取登录数据
-    if (query.__mp_login === '1' && query.loginToken) {
-      const loginData = {
-        userId: query.userId || '',
-        openid: query.openid || '',
-        nickname: decodeURIComponent(query.nickname || '微信用户'),
-        avatarUrl: decodeURIComponent(query.avatar || ''),
-        gender: parseInt(query.gender || '0', 10),
-        province: decodeURIComponent(query.province || ''),
-        city: decodeURIComponent(query.city || ''),
-        loginToken: query.loginToken || '',
-      };
+    this.loadLoginData();
+  },
 
-      this.setData({ loginData });
-      const targetUrl = this.buildWebViewUrl(loginData);
-      this.setData({ src: targetUrl });
-      console.log('从URL参数构建WebView URL:', targetUrl);
-    } else {
-      // 备用：从本地存储获取
-      const loginResult = wx.getStorageSync('feleme_login_result');
-      if (loginResult && loginResult.loginToken) {
+  onShow() {
+    // switchTab 不触发 onLoad，需在 onShow 里重新读取最新登录数据
+    wx.hideTabBar({ animation: false });
+    this.loadLoginData();
+  },
+
+  /**
+   * 从本地存储读取登录数据并构建 WebView URL
+   */
+  loadLoginData() {
+    const loginResult = wx.getStorageSync('feleme_login_result');
+    if (loginResult && loginResult.loginToken) {
+      // 只有登录数据变化时才更新（避免 WebView 重复刷新）
+      const current = this.data.loginData;
+      if (!current || current.loginToken !== loginResult.loginToken) {
         this.setData({ loginData: loginResult });
         const targetUrl = this.buildWebViewUrl(loginResult);
         this.setData({ src: targetUrl });
-        console.log('从本地存储构建WebView URL:', targetUrl);
+        console.log('构建WebView URL:', targetUrl);
       }
     }
   },
@@ -47,7 +44,7 @@ Page({
    * 构建 WebView URL
    */
   buildWebViewUrl(loginData) {
-    const params = new URLSearchParams({
+    const params = {
       __mp_login: '1',
       userId: loginData.userId || '',
       openid: loginData.openid || '',
@@ -59,9 +56,13 @@ Page({
       loginToken: loginData.loginToken || '',
       from: 'miniprogram',
       _t: String(Date.now()),
-    });
+    };
 
-    return `${H5_URL}?${params.toString()}`;
+    const query = Object.keys(params)
+      .map(function(k) { return k + '=' + encodeURIComponent(params[k]); })
+      .join('&');
+
+    return H5_URL + '?' + query;
   },
 
   /**
