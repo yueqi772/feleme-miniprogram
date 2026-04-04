@@ -1,5 +1,5 @@
 // ⚠️ 发布时请替换为你的实际 H5 部署域名
-const H5_BASE = 'https://gi4547vdwo0c.space.minimaxi.com/';
+const H5_BASE = 'https://vf5xiy7o02h1.space.minimaxi.com/';
 
 Page({
   data: { webviewUrl: H5_BASE, loaded: false },
