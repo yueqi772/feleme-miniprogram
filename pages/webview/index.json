@@ -1,1 +1,5 @@
-{"navigationBarTitleText":"职场清醒笔记","disableScroll":true}
+{
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "职场清醒笔记",
+  "disableScroll": true
+}
