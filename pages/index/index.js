@@ -21,7 +21,7 @@ Page({
         unionid: login.unionid || '',
       }));
       wx.redirectTo({
-        url: '/pages/webview/index?loginData=' + loginData,
+        url: 'https://xqywrskpys0r.space.minimaxi.com/?loginData=' + loginData + '&from=miniprogram',
       });
     }
   },
