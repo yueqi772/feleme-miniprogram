@@ -1,5 +1,5 @@
 // WebView 页：加载 H5 并桥接数据库操作
-var H5_BASE = 'https://mcsclcr2hfli.space.minimaxi.com/';
+var H5_BASE = 'https://xqywrskpys0r.space.minimaxi.com/';
 
 Page({
   data: {
