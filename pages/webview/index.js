@@ -1,1 +1,142 @@
-Ly8gV2ViVmlldyDpobXvvJrliqDovb0gSDUg5bm25qGl5o6l5pWw5o2u5bqT5pON5L2cCnZhciBINV9CQVNFID0gJ2h0dHBzOi8vbWNzY2xjcjJoZmxpLnNwYWNlLm1pbmltYXhpLmNvbS8nOwoKUGFnZSh7CiAgZGF0YTogewogICAgc3JjOiBINV9CQVNFLCAgIC8vIHdlYi12aWV3IOeahCBzcmPvvIhXWE1MIOeUqCBzcmPvvIkKICAgIGxvYWRlZDogZmFsc2UsICAvLyDmjqfliLYgbG9hZGluZyDpga7nvakKICB9LAoKICBvbkxvYWQ6IGZ1bmN0aW9uKHF1ZXJ5KSB7CiAgICB2YXIgbG9naW5EYXRhID0gcXVlcnkubG9naW5EYXRhOwogICAgaWYgKGxvZ2luRGF0YSkgewogICAgICB0cnkgewogICAgICAgIHZhciBkYXRhID0gSlNPTi5wYXJzZShkZWNvZGVVUklDb21wb25lbnQobG9naW5EYXRhKSk7CiAgICAgICAgdmFyIHBhcmFtcyA9IFsKICAgICAgICAgICdfX21wX2xvZ2luPTEnLAogICAgICAgICAgJ25pY2tuYW1lPScgKyBlbmNvZGVVUklDb21wb25lbnQoZGF0YS5uaWNrbmFtZSB8fCAnJyksCiAgICAgICAgICAnYXZhdGFyPScgKyBlbmNvZGVVUklDb21wb25lbnQoZGF0YS5hdmF0YXJVcmwgfHwgJycpLAogICAgICAgICAgJ2dlbmRlcj0nICsgU3RyaW5nKGRhdGEuZ2VuZGVyIHx8IDApLAogICAgICAgICAgJ3Byb3ZpbmNlPScgKyBlbmNvZGVVUklDb21wb25lbnQoZGF0YS5wcm92aW5jZSB8fCAnJyksCiAgICAgICAgICAnY2l0eT0nICsgZW5jb2RlVVJJQ29tcG9uZW50KGRhdGEuY2l0eSB8fCAnJyksCiAgICAgICAgICAnb3BlbmlkPScgKyBlbmNvZGVVUklDb21wb25lbnQoZGF0YS5vcGVuaWQgfHwgJycpLAogICAgICAgICAgJ3VuaW9uaWQ9JyArIGVuY29kZVVSSUNvbXBvbmVudChkYXRhLnVuaW9uaWQgfHwgJycpLAogICAgICAgICAgJ2Zyb209bWluaXByb2dyYW0nLAogICAgICAgICAgJ190PScgKyBEYXRlLm5vdygpLAogICAgICAgIF0uam9pbignJicpOwogICAgICAgIHRoaXMuc2V0RGF0YSh7IHNyYzogSDVfQkFTRSArICc/JyArIHBhcmFtcyB9KTsKICAgICAgfSBjYXRjaChlKSB7CiAgICAgICAgY29uc29sZS5lcnJvcign6Kej5p6Q55m75b2V5pWw5o2u5aSx6LSlJywgZSk7CiAgICAgIH0KICAgIH0KICB9LAoKICBvbldlYlZpZXdMb2FkOiBmdW5jdGlvbigpIHsKICAgIGNvbnNvbGUubG9nKCfjgJB3ZWJ2aWV344CRSDUg6aG16Z2i5Yqg6L295oiQ5YqfJyk7CiAgICB0aGlzLnNldERhdGEoeyBsb2FkZWQ6IHRydWUgfSk7CiAgfSwKCiAgb25XZWJWaWV3RXJyb3I6IGZ1bmN0aW9uKCkgewogICAgY29uc29sZS5lcnJvcign44CQd2Vidmlld+OAkUg1IOmhtemdouWKoOi9vemUmeivrycpOwogICAgdGhpcy5zZXREYXRhKHsgbG9hZGVkOiB0cnVlIH0pOwogICAgd3guc2hvd1RvYXN0KHsgdGl0bGU6ICfpobXpnaLliqDovb3lpLHotKUnLCBpY29uOiAnbm9uZScgfSk7CiAgfSwKCiAgb25XZWJWaWV3TWVzc2FnZTogZnVuY3Rpb24oZSkgewogICAgdmFyIG1zZ3MgPSAoZS5kZXRhaWwgJiYgZS5kZXRhaWwuZGF0YSkgfHwgW107CiAgICBmb3IgKHZhciBpID0gMDsgaSA8IG1zZ3MubGVuZ3RoOyBpKyspIHsKICAgICAgdGhpcy5oYW5kbGVINU1lc3NhZ2UobXNnc1tpXSk7CiAgICB9CiAgfSwKCiAgaGFuZGxlSDVNZXNzYWdlOiBmdW5jdGlvbihtc2cpIHsKICAgIHZhciB0eXBlID0gbXNnLnR5cGU7CiAgICB2YXIgcGF5bG9hZCA9IG1zZy5wYXlsb2FkIHx8IHt9OwoKICAgIGlmICh0eXBlID09PSAnSDVfUkVRVUVTVF9MT0dJTicpIHsKICAgICAgd3gucmVkaXJlY3RUbyh7IHVybDogJy9wYWdlcy9sb2dpbi9pbmRleCcgfSk7CiAgICAgIHJldHVybjsKICAgIH0KCiAgICBpZiAodHlwZSA9PT0gJ0RCX0FERCcpIHsKICAgICAgdGhpcy5jYWxsQ2xvdWQoJ3RjYicsIHsKICAgICAgICBjb2xsZWN0aW9uOiBwYXlsb2FkLmNvbGxlY3Rpb24sCiAgICAgICAgYWN0aW9uOiAnYWRkJywKICAgICAgICBkYXRhOiBwYXlsb2FkLmRhdGEsCiAgICAgIH0pLnRoZW4oZnVuY3Rpb24ocmVzKSB7CiAgICAgICAgdGhpcy5yZXBseVRvSDUoeyBtc2dJZDogcGF5bG9hZC5fbXNnSWQsIHN1Y2Nlc3M6IHJlcy5zdWNjZXNzLCBpZDogcmVzLmlkLCBlcnJvcjogcmVzLmVycm9yIH0pOwogICAgICB9LmJpbmQodGhpcykpOwogICAgICByZXR1cm47CiAgICB9CgogICAgaWYgKHR5cGUgPT09ICdEQl9VUERBVEUnKSB7CiAgICAgIHRoaXMuY2FsbENsb3VkKCd0Y2InLCB7CiAgICAgICAgY29sbGVjdGlvbjogcGF5bG9hZC5jb2xsZWN0aW9uLAogICAgICAgIGFjdGlvbjogJ3VwZGF0ZScsCiAgICAgICAgZGF0YTogcGF5bG9hZC5kYXRhLAogICAgICAgIHF1ZXJ5OiBwYXlsb2FkLnF1ZXJ5LAogICAgICB9KS50aGVuKGZ1bmN0aW9uKHJlcykgewogICAgICAgIHRoaXMucmVwbHlUb0g1KHsgbXNnSWQ6IHBheWxvYWQuX21zZ0lkLCBzdWNjZXNzOiByZXMuc3VjY2VzcywgZXJyb3I6IHJlcy5lcnJvciB9KTsKICAgICAgfS5iaW5kKHRoaXMpKTsKICAgICAgcmV0dXJuOwogICAgfQoKICAgIGlmICh0eXBlID09PSAnREJfTElTVCcpIHsKICAgICAgdGhpcy5jYWxsQ2xvdWQoJ3RjYicsIHsKICAgICAgICBjb2xsZWN0aW9uOiBwYXlsb2FkLmNvbGxlY3Rpb24sCiAgICAgICAgYWN0aW9uOiAnbGlzdCcsCiAgICAgICAgb3BlbmlkOiBwYXlsb2FkLm9wZW5pZCB8fCAnJywKICAgICAgICBsaW1pdDogcGF5bG9hZC5saW1pdCB8fCAyMCwKICAgICAgICBza2lwOiBwYXlsb2FkLnNraXAgfHwgMCwKICAgICAgfSkudGhlbihmdW5jdGlvbihyZXMpIHsKICAgICAgICB0aGlzLnJlcGx5VG9INSh7IG1zZ0lkOiBwYXlsb2FkLl9tc2dJZCwgc3VjY2VzczogcmVzLnN1Y2Nlc3MsIGxpc3Q6IHJlcy5saXN0IHx8IFtdLCBlcnJvcjogcmVzLmVycm9yIH0pOwogICAgICB9LmJpbmQodGhpcykpOwogICAgICByZXR1cm47CiAgICB9CgogICAgaWYgKHR5cGUgPT09ICdEQl9HRVQnKSB7CiAgICAgIHRoaXMuY2FsbENsb3VkKCd0Y2InLCB7CiAgICAgICAgY29sbGVjdGlvbjogcGF5bG9hZC5jb2xsZWN0aW9uLAogICAgICAgIGFjdGlvbjogJ2dldCcsCiAgICAgICAgcXVlcnk6IHBheWxvYWQucXVlcnksCiAgICAgIH0pLnRoZW4oZnVuY3Rpb24ocmVzKSB7CiAgICAgICAgdGhpcy5yZXBseVRvSDUoeyBtc2dJZDogcGF5bG9hZC5fbXNnSWQsIHN1Y2Nlc3M6IHJlcy5zdWNjZXNzLCBkYXRhOiByZXMuZGF0YSwgZXJyb3I6IHJlcy5lcnJvciB9KTsKICAgICAgfS5iaW5kKHRoaXMpKTsKICAgICAgcmV0dXJuOwogICAgfQoKICAgIGlmICh0eXBlID09PSAnR0VUX0xPR0lOX0lORk8nKSB7CiAgICAgIHZhciBsb2dpbkRhdGEgPSB3eC5nZXRTdG9yYWdlU3luYygnZmVsZW1lX2xvZ2luX3Jlc3VsdCcpIHx8IHt9OwogICAgICB0aGlzLnJlcGx5VG9INSh7IG1zZ0lkOiBwYXlsb2FkLl9tc2dJZCB8fCBudWxsLCB0eXBlOiAnTE9HSU5fSU5GTycsIGRhdGE6IGxvZ2luRGF0YSB9KTsKICAgICAgcmV0dXJuOwogICAgfQoKICAgIGNvbnNvbGUubG9nKCfjgJB3ZWJ2aWV344CR5pyq55+l5raI5oGv57G75Z6LOicsIHR5cGUpOwogIH0sCgogIGNhbGxDbG91ZDogZnVuY3Rpb24obmFtZSwgZGF0YSkgewogICAgcmV0dXJuIG5ldyBQcm9taXNlKGZ1bmN0aW9uKHJlc29sdmUpIHsKICAgICAgd3guY2xvdWQuY2FsbCh7CiAgICAgICAgY29uZmlnOiB7IGVudjogJ2Nsb3VkYmFzZS0zZzIyYzljZTViY2YwZTU1JyB9LAogICAgICAgIG5hbWU6IG5hbWUsCiAgICAgICAgZGF0YTogZGF0YSwKICAgICAgICBzdWNjZXNzOiBmdW5jdGlvbihyZXMpIHsKICAgICAgICAgIGNvbnNvbGUubG9nKCfjgJBjbG91ZC4nICsgbmFtZSArICfjgJHmiJDlip86JywgcmVzLnJlc3VsdCk7CiAgICAgICAgICByZXNvbHZlKHJlcy5yZXN1bHQgfHwge30pOwogICAgICAgIH0sCiAgICAgICAgZmFpbDogZnVuY3Rpb24oZXJyKSB7CiAgICAgICAgICBjb25zb2xlLmVycm9yKCfjgJBjbG91ZC4nICsgbmFtZSArICfjgJHlpLHotKU6JywgZXJyKTsKICAgICAgICAgIHJlc29sdmUoeyBzdWNjZXNzOiBmYWxzZSwgZXJyb3I6IGVyci5lcnJNc2cgfHwgJ+S6keWHveaVsOiwg+eUqOWksei0pScgfSk7CiAgICAgICAgfSwKICAgICAgfSk7CiAgICB9KTsKICB9LAoKICByZXBseVRvSDU6IGZ1bmN0aW9uKGRhdGEpIHsKICAgIHRyeSB7CiAgICAgIHd4Lm1pbmlQcm9ncmFtLnBvc3RNZXNzYWdlKHsgZGF0YTogZGF0YSB9KTsKICAgIH0gY2F0Y2goZSkgewogICAgICBjb25zb2xlLmVycm9yKCflm57lpI0gSDUg5aSx6LSlOicsIGUpOwogICAgfQogIH0sCn0pOwo=
+// WebView 页：加载 H5 并桥接数据库操作
+var H5_BASE = 'https://mcsclcr2hfli.space.minimaxi.com/';
+
+Page({
+  data: {
+    src: H5_BASE,   // web-view 的 src（WXML 用 src）
+    loaded: false,  // 控制 loading 遮罩
+  },
+
+  onLoad: function(query) {
+    var loginData = query.loginData;
+    if (loginData) {
+      try {
+        var data = JSON.parse(decodeURIComponent(loginData));
+        var params = [
+          '__mp_login=1',
+          'nickname=' + encodeURIComponent(data.nickname || ''),
+          'avatar=' + encodeURIComponent(data.avatarUrl || ''),
+          'gender=' + String(data.gender || 0),
+          'province=' + encodeURIComponent(data.province || ''),
+          'city=' + encodeURIComponent(data.city || ''),
+          'openid=' + encodeURIComponent(data.openid || ''),
+          'unionid=' + encodeURIComponent(data.unionid || ''),
+          'from=miniprogram',
+          '_t=' + Date.now(),
+        ].join('&');
+        this.setData({ src: H5_BASE + '?' + params });
+      } catch(e) {
+        console.error('解析登录数据失败', e);
+      }
+    }
+  },
+
+  onWebViewLoad: function() {
+    console.log('【webview】H5 页面加载成功');
+    this.setData({ loaded: true });
+  },
+
+  onWebViewError: function() {
+    console.error('【webview】H5 页面加载错误');
+    this.setData({ loaded: true });
+    wx.showToast({ title: '页面加载失败', icon: 'none' });
+  },
+
+  onWebViewMessage: function(e) {
+    var msgs = (e.detail && e.detail.data) || [];
+    for (var i = 0; i < msgs.length; i++) {
+      this.handleH5Message(msgs[i]);
+    }
+  },
+
+  handleH5Message: function(msg) {
+    var type = msg.type;
+    var payload = msg.payload || {};
+
+    if (type === 'H5_REQUEST_LOGIN') {
+      wx.redirectTo({ url: '/pages/login/index' });
+      return;
+    }
+
+    if (type === 'DB_ADD') {
+      this.callCloud('tcb', {
+        collection: payload.collection,
+        action: 'add',
+        data: payload.data,
+      }).then(function(res) {
+        this.replyToH5({ msgId: payload._msgId, success: res.success, id: res.id, error: res.error });
+      }.bind(this));
+      return;
+    }
+
+    if (type === 'DB_UPDATE') {
+      this.callCloud('tcb', {
+        collection: payload.collection,
+        action: 'update',
+        data: payload.data,
+        query: payload.query,
+      }).then(function(res) {
+        this.replyToH5({ msgId: payload._msgId, success: res.success, error: res.error });
+      }.bind(this));
+      return;
+    }
+
+    if (type === 'DB_LIST') {
+      this.callCloud('tcb', {
+        collection: payload.collection,
+        action: 'list',
+        openid: payload.openid || '',
+        limit: payload.limit || 20,
+        skip: payload.skip || 0,
+      }).then(function(res) {
+        this.replyToH5({ msgId: payload._msgId, success: res.success, list: res.list || [], error: res.error });
+      }.bind(this));
+      return;
+    }
+
+    if (type === 'DB_GET') {
+      this.callCloud('tcb', {
+        collection: payload.collection,
+        action: 'get',
+        query: payload.query,
+      }).then(function(res) {
+        this.replyToH5({ msgId: payload._msgId, success: res.success, data: res.data, error: res.error });
+      }.bind(this));
+      return;
+    }
+
+    if (type === 'GET_LOGIN_INFO') {
+      var loginData = wx.getStorageSync('feleme_login_result') || {};
+      this.replyToH5({ msgId: payload._msgId || null, type: 'LOGIN_INFO', data: loginData });
+      return;
+    }
+
+    console.log('【webview】未知消息类型:', type);
+  },
+
+  callCloud: function(name, data) {
+    return new Promise(function(resolve) {
+      wx.cloud.call({
+        config: { env: 'cloudbase-3g22c9ce5bcf0e55' },
+        name: name,
+        data: data,
+        success: function(res) {
+          console.log('【cloud.' + name + '】成功:', res.result);
+          resolve(res.result || {});
+        },
+        fail: function(err) {
+          console.error('【cloud.' + name + '】失败:', err);
+          resolve({ success: false, error: err.errMsg || '云函数调用失败' });
+        },
+      });
+    });
+  },
+
+  replyToH5: function(data) {
+    try {
+      wx.miniProgram.postMessage({ data: data });
+    } catch(e) {
+      console.error('回复 H5 失败:', e);
+    }
+  },
+});
