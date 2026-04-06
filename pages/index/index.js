@@ -1,1 +1,32 @@
-Ly8g6aaW6aG177ya5pyq55m75b2V5pi+56S655m75b2V6aG177yb5bey55m75b2V55u05o6l6Lez6L2sIHdlYnZpZXcKUGFnZSh7CiAgZGF0YTogewogICAgZmVhdHVyZXM6IFsKICAgICAgeyBpY29uOiAn8J+noCcsIHRpdGxlOiAn57K+5YeG5oOF57uq6K+G5YirJywgZGVzYzogJ0FJIOmpseWKqOeahOiBjOWcuuaDhee7quWIhuaekCcgfSwKICAgICAgeyBpY29uOiAn8J+MsycsIHRpdGxlOiAn5oOF57uq5qCR5rSeJywgZGVzYzogJ+WuieWFqOengeWvhueahOaDhee7quWAvuivieepuumXtCcgfSwKICAgICAgeyBpY29uOiAn8J+SrCcsIHRpdGxlOiAn6K+d5pyv57uD5LmgJywgZGVzYzogJ+ecn+WunuWcuuaZr+WvueivneaooeaLn+iuree7gycgfSwKICAgIF0sCiAgfSwKCiAgb25Mb2FkOiBmdW5jdGlvbigpIHsKICAgIHZhciBsb2dpbiA9IHd4LmdldFN0b3JhZ2VTeW5jKCdmZWxlbWVfbG9naW5fcmVzdWx0Jyk7CiAgICBpZiAobG9naW4gJiYgbG9naW4ubG9naW5Ub2tlbiAmJiBsb2dpbi5vcGVuaWQpIHsKICAgICAgdmFyIGxvZ2luRGF0YSA9IGVuY29kZVVSSUNvbXBvbmVudChKU09OLnN0cmluZ2lmeSh7CiAgICAgICAgbmlja25hbWU6IGxvZ2luLm5pY2tuYW1lIHx8ICcnLAogICAgICAgIGF2YXRhclVybDogbG9naW4uYXZhdGFyVXJsIHx8ICcnLAogICAgICAgIGdlbmRlcjogbG9naW4uZ2VuZGVyIHx8IDAsCiAgICAgICAgcHJvdmluY2U6IGxvZ2luLnByb3ZpbmNlIHx8ICcnLAogICAgICAgIGNpdHk6IGxvZ2luLmNpdHkgfHwgJycsCiAgICAgICAgb3BlbmlkOiBsb2dpbi5vcGVuaWQgfHwgJycsCiAgICAgICAgdW5pb25pZDogbG9naW4udW5pb25pZCB8fCAnJywKICAgICAgfSkpOwogICAgICB3eC5yZWRpcmVjdFRvKHsKICAgICAgICB1cmw6ICcvcGFnZXMvd2Vidmlldy9pbmRleD9sb2dpbkRhdGE9JyArIGxvZ2luRGF0YSwKICAgICAgfSk7CiAgICB9CiAgfSwKCiAgZ29Mb2dpbjogZnVuY3Rpb24oKSB7CiAgICB3eC5uYXZpZ2F0ZVRvKHsgdXJsOiAnL3BhZ2VzL2xvZ2luL2luZGV4JyB9KTsKICB9LAp9KTsK
+// 首页：未登录显示登录页；已登录直接跳转 webview
+Page({
+  data: {
+    features: [
+      { icon: '🧠', title: '精准情绪识别', desc: 'AI 驱动的职场情绪分析' },
+      { icon: '🌳', title: '情绪树洞', desc: '安全私密的情绪倾诉空间' },
+      { icon: '💬', title: '话术练习', desc: '真实场景对话模拟训练' },
+    ],
+  },
+
+  onLoad: function() {
+    var login = wx.getStorageSync('feleme_login_result');
+    if (login && login.loginToken && login.openid) {
+      var loginData = encodeURIComponent(JSON.stringify({
+        nickname: login.nickname || '',
+        avatarUrl: login.avatarUrl || '',
+        gender: login.gender || 0,
+        province: login.province || '',
+        city: login.city || '',
+        openid: login.openid || '',
+        unionid: login.unionid || '',
+      }));
+      wx.redirectTo({
+        url: '/pages/webview/index?loginData=' + loginData,
+      });
+    }
+  },
+
+  goLogin: function() {
+    wx.navigateTo({ url: '/pages/login/index' });
+  },
+});
