@@ -1,175 +1,169 @@
-// ⚠️ 发布时请替换为你的实际 H5 部署域名
-const H5_URL = 'https://mcsclcr2hfli.space.minimaxi.com/';
+// WebView 页：加载 H5 并桥接数据库操作
+var H5_BASE = 'https://mcsclcr2hfli.space.minimaxi.com/';
 
 Page({
-  data: { webviewUrl: H5_BASE, loaded: false },
+  data: {
+    webviewUrl: H5_BASE,
+    loaded: false,
+  },
 
-  onLoad(query) {
-    const { loginData } = query;
+  onLoad: function(query) {
+    wx.hideTabBar({ animation: false });
+
+    // 优先从 URL 参数取登录数据（redirectTo 跳转场景）
+    var loginData = query.loginData;
     if (loginData) {
       try {
-        const data = JSON.parse(decodeURIComponent(loginData));
-        const params = new URLSearchParams({
-          __mp_login: '1',
-          nickname: data.nickname || '',
-          avatar: data.avatarUrl || '',
-          gender: String(data.gender || 0),
-          province: data.province || '',
-          city: data.city || '',
-          openid: data.openid || '',
-          unionid: data.unionid || '',
-          from: 'miniprogram',
-          _t: String(Date.now()),
-        });
-        this.setData({ webviewUrl: `${H5_BASE}?${params.toString()}` });
+        var data = JSON.parse(decodeURIComponent(loginData));
+        this.setData({ webviewUrl: H5_BASE + '?' + this.buildQuery(data) });
+        return;
       } catch(e) {
         console.error('解析登录数据失败', e);
-        this.setData({ webviewUrl: H5_BASE });
+      }
+    }
+
+    // 备用：从 Storage 取（switchTab 跳转场景）
+    var stored = wx.getStorageSync('feleme_login_result');
+    if (stored && stored.loginToken) {
+      this.setData({ webviewUrl: H5_BASE + '?' + this.buildQuery(stored) });
+    }
+  },
+
+  onShow: function() {
+    wx.hideTabBar({ animation: false });
+
+    // switchTab 不触发 onLoad，onShow 时补充读取 Storage
+    if (!this.data.webviewUrl || this.data.webviewUrl === H5_BASE) {
+      var stored = wx.getStorageSync('feleme_login_result');
+      if (stored && stored.loginToken) {
+        this.setData({ webviewUrl: H5_BASE + '?' + this.buildQuery(stored) });
       }
     }
   },
 
-  onWebViewLoad() {
-    this.setData({ loaded: true });
-    console.log('【webview】H5 页面加载完成');
-    // 通知 H5：小程序已就绪，可以发消息了
-    wx.miniProgram.postMessage({ data: { type: 'MP_READY', loaded: true } });
+  buildQuery: function(data) {
+    return [
+      '__mp_login=1',
+      'nickname=' + encodeURIComponent(data.nickname || ''),
+      'avatar=' + encodeURIComponent(data.avatarUrl || ''),
+      'gender=' + String(data.gender || 0),
+      'province=' + encodeURIComponent(data.province || ''),
+      'city=' + encodeURIComponent(data.city || ''),
+      'openid=' + encodeURIComponent(data.openid || ''),
+      'unionid=' + encodeURIComponent(data.unionid || ''),
+      'loginToken=' + encodeURIComponent(data.loginToken || ''),
+      'from=miniprogram',
+      '_t=' + Date.now(),
+    ].join('&');
   },
 
-  onWebViewError() {
+  onWebViewLoad: function() {
+    this.setData({ loaded: true });
+    console.log('【webview】H5 加载完成');
+  },
+
+  onWebViewError: function() {
     this.setData({ loaded: true });
     wx.showToast({ title: '页面加载失败', icon: 'none' });
   },
 
-  // 接收 H5 页面发来的消息
-  onWebViewMessage(e) {
-    const msgs = e.detail?.data || [];
-    for (const msg of msgs) {
-      this.handleH5Message(msg);
+  onWebViewMessage: function(e) {
+    var msgs = (e.detail && e.detail.data) || [];
+    for (var i = 0; i < msgs.length; i++) {
+      this.handleH5Message(msgs[i]);
     }
   },
 
-  // 处理 H5 发来的各类消息
-  handleH5Message(msg) {
-    const { type, payload } = msg;
+  handleH5Message: function(msg) {
+    var type = msg.type;
+    var payload = msg.payload || {};
     console.log('【webview】收到 H5 消息:', msg);
 
-    switch (type) {
-      case 'H5_REQUEST_LOGIN':
-        wx.redirectTo({ url: '/pages/login/index' });
-        break;
-
-      // ─── 数据库写操作 ─────────────────────────────
-      case 'DB_ADD':
-        this.callCloud('tcb', {
-          collection: payload.collection,
-          action: 'add',
-          data: payload.data,
-        }).then(res => {
-          this.replyToH5({ msgId: payload._msgId, success: res.success, id: res.id, error: res.error });
-        });
-        break;
-
-      case 'DB_UPDATE':
-        this.callCloud('tcb', {
-          collection: payload.collection,
-          action: 'update',
-          data: payload.data,
-          query: payload.query,
-        }).then(res => {
-          this.replyToH5({ msgId: payload._msgId, success: res.success, error: res.error });
-        });
-        break;
-
-      case 'DB_LIST':
-        this.callCloud('tcb', {
-          collection: payload.collection,
-          action: 'list',
-          openid: payload.openid || '',
-          limit: payload.limit || 20,
-          skip: payload.skip || 0,
-        }).then(res => {
-          this.replyToH5({ msgId: payload._msgId, success: res.success, list: res.list || [], error: res.error });
-        });
-        break;
-
-      case 'DB_GET':
-        this.callCloud('tcb', {
-          collection: payload.collection,
-          action: 'get',
-          query: payload.query,
-        }).then(res => {
-          this.replyToH5({ msgId: payload._msgId, success: res.success, data: res.data, error: res.error });
-        });
-        break;
-
-      // ─── 登录状态查询 ─────────────────────────────
-      case 'GET_LOGIN_INFO':
-        const loginData = wx.getStorageSync('feleme_login_result') || {};
-        this.replyToH5({ msgId: payload?._msgId, type: 'LOGIN_INFO', data: loginData });
-        break;
-
-      default:
-        console.log('【webview】未知消息类型:', type, msg);
+    if (type === 'H5_REQUEST_LOGIN') {
+      wx.navigateTo({ url: '/pages/login/index' });
+      return;
     }
+
+    if (type === 'DB_ADD') {
+      this.callCloud('tcb', {
+        collection: payload.collection,
+        action: 'add',
+        data: payload.data,
+      }).then(function(res) {
+        this.replyToH5({ msgId: payload._msgId, success: res.success, id: res.id, error: res.error });
+      }.bind(this));
+      return;
+    }
+
+    if (type === 'DB_UPDATE') {
+      this.callCloud('tcb', {
+        collection: payload.collection,
+        action: 'update',
+        data: payload.data,
+        query: payload.query,
+      }).then(function(res) {
+        this.replyToH5({ msgId: payload._msgId, success: res.success, error: res.error });
+      }.bind(this));
+      return;
+    }
+
+    if (type === 'DB_LIST') {
+      this.callCloud('tcb', {
+        collection: payload.collection,
+        action: 'list',
+        openid: payload.openid || '',
+        limit: payload.limit || 20,
+        skip: payload.skip || 0,
+      }).then(function(res) {
+        this.replyToH5({ msgId: payload._msgId, success: res.success, list: res.list || [], error: res.error });
+      }.bind(this));
+      return;
+    }
+
+    if (type === 'DB_GET') {
+      this.callCloud('tcb', {
+        collection: payload.collection,
+        action: 'get',
+        query: payload.query,
+      }).then(function(res) {
+        this.replyToH5({ msgId: payload._msgId, success: res.success, data: res.data, error: res.error });
+      }.bind(this));
+      return;
+    }
+
+    if (type === 'GET_LOGIN_INFO') {
+      var loginData = wx.getStorageSync('feleme_login_result') || {};
+      this.replyToH5({ msgId: payload._msgId || null, type: 'LOGIN_INFO', data: loginData });
+      return;
+    }
+
+    console.log('【webview】未知消息类型:', type);
   },
 
-  // 调用云函数（统一入口）
-  callCloud(name, data) {
-    return new Promise((resolve) => {
-      wx.cloud.call({
-        config: { env: 'cloudbase-3g22c9ce5bcf0e55' },
-        name,
-        data,
-        success: (res) => {
-          console.log(`【cloud.${name}] 成功:`, res.result);
+  callCloud: function(name, data) {
+    return new Promise(function(resolve) {
+      wx.cloud.callFunction({
+        name: name,
+        data: data,
+        success: function(res) {
+          console.log('【cloud.' + name + '】成功:', res.result);
           resolve(res.result || {});
         },
-        fail: (err) => {
-          console.error(`【cloud.${name}] 失败:`, err);
+        fail: function(err) {
+          console.error('【cloud.' + name + '】失败:', err);
           resolve({ success: false, error: err.errMsg || '云函数调用失败' });
         },
       });
     });
   },
 
-  // 向 H5 发消息（通过 evaluateJavaScript）
-  replyToH5(data) {
-    try {
-      wx.miniProgram.postMessage({ data });
-    } catch(e) {
-      console.error('回复 H5 失败:', e);
-    }
+  replyToH5: function(data) {
+    console.log('【webview】回复 H5:', data);
+    // 注：wx.miniProgram.postMessage 只在 H5 侧可用
+    // 小程序无法主动推送消息给 WebView，此处仅记录日志
   },
 
-  /**
-   * 保存操作日志到云数据库
-   */
-  handleSaveOperationLog(logs) {
-    if (!this.data.loginData || !this.data.loginData.loginToken) {
-      console.error('未登录，无法保存操作日志');
-      return;
-    }
-
-    wx.cloud.callFunction({
-      name: 'saveOperationLog',
-      data: {
-        token: this.data.loginData.loginToken,
-        logs: logs,
-      },
-      success: function(res) {
-        console.log('保存操作日志成功:', res);
-      },
-      fail: function(err) {
-        console.error('保存操作日志失败:', err);
-      },
-    });
-  },
-
-  /**
-   * 页面卸载时恢复 tabBar
-   */
-  onUnload() {
+  onUnload: function() {
     wx.showTabBar({ animation: false });
   },
 });
