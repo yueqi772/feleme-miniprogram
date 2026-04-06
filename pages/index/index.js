@@ -7,11 +7,13 @@ Page({
     ],
   },
   onShow() {
-    const login = wx.getStorageSync('feleme_login');
-    if (login) {
-      const encoded = encodeURIComponent(JSON.stringify(login));
-      wx.redirectTo({ url: `/pages/webview/index?loginData=${encoded}` });
+    // 已登录则直接跳转到 webview（tabBar 页面用 switchTab）
+    const login = wx.getStorageSync('feleme_login_result');
+    if (login && login.loginToken) {
+      wx.switchTab({ url: '/pages/webview/index' });
     }
   },
-  goLogin() { wx.redirectTo({ url: '/pages/login/index' }); },
+  goLogin() {
+    wx.navigateTo({ url: '/pages/login/index' });
+  },
 });

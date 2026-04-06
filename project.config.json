@@ -16,5 +16,6 @@
   },
   "compileType": "miniprogram",
   "libVersion": "2.33.0",
-  "condition": {}
+  "condition": {},
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate/"
 }
