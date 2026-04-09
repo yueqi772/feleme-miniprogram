@@ -11,19 +11,9 @@ Page({
   onShow: function() {
     // 每次显示首页都检查登录状态，已登录则跳 webview
     var login = wx.getStorageSync('feleme_login_result');
-    if (login && login.loginToken && login.openid) {
-      var loginData = encodeURIComponent(JSON.stringify({
-        nickname: login.nickname || '',
-        avatarUrl: login.avatarUrl || '',
-        gender: login.gender || 0,
-        province: login.province || '',
-        city: login.city || '',
-        openid: login.openid || '',
-        unionid: login.unionid || '',
-      }));
-      wx.redirectTo({
-        url: 'https://xqywrskpys0r.space.minimaxi.com/?loginData=' + loginData + '&from=miniprogram',
-      });
+    if (login && login.loginToken) {
+      // webview 是 tabBar 页面，必须用 switchTab
+      wx.switchTab({ url: '/pages/webview/index' });
     }
   },
 
