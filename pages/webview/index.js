@@ -186,7 +186,7 @@ Page({
     });
   },
 
-  // 向 H5 发消息
+  // 向 H5 发消息（H5 已改用 tcb-js-sdk 直连，此函数仅保留日志）
   replyToH5: function(data) {
     console.log('【webview】replyToH5:', data);
   },

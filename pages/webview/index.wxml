@@ -3,5 +3,5 @@
     <view class="spinner"></view>
     <text class="loading-text">正在加载应用…</text>
   </view>
-  <web-view src="{{src}}" bindload="onWebViewLoad" binderror="onWebViewError" bindmessage="onWebViewMessage"></web-view>
+  <web-view id="feleme-webview" src="{{src}}" bindload="onWebViewLoad" binderror="onWebViewError" bindmessage="onWebViewMessage"></web-view>
 </view>
