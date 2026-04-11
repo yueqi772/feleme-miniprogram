@@ -89,16 +89,6 @@ Page({
       return;
     }
 
-    if (type === 'DEBUG_TOAST') {
-      wx.showToast({
-        title: (payload.title || 'DEBUG').slice(0, 7),
-        icon: 'none',
-        duration: 2000,
-      });
-      console.log('【webview】DEBUG_TOAST:', payload.fullText || payload.title || '');
-      return;
-    }
-
     // ─── 数据库写操作 ───────────────────────────────
     if (type === 'DB_ADD') {
       this.callCloud('tcb', {
