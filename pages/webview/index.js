@@ -1,5 +1,9 @@
 // WebView 页：加载 H5 并桥接数据库操作
-var H5_BASE = 'https://bpghdlxub2ln.space.minimaxi.com/';
+// var H5_BASE = 'https://bpghdlxub2ln.space.minimaxi.com/';
+// var H5_BASE = 'https://5mto4elwv9dj.space.minimaxi.com/';
+var H5_BASE = 'http://localhost:5173/';
+
+
 
 Page({
   data: {
@@ -82,6 +86,16 @@ Page({
 
     if (type === 'H5_REQUEST_LOGIN') {
       wx.navigateTo({ url: '/pages/login/index' });
+      return;
+    }
+
+    if (type === 'DEBUG_TOAST') {
+      wx.showToast({
+        title: (payload.title || 'DEBUG').slice(0, 7),
+        icon: 'none',
+        duration: 2000,
+      });
+      console.log('【webview】DEBUG_TOAST:', payload.fullText || payload.title || '');
       return;
     }
 
