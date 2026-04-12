@@ -1,6 +1,6 @@
 {
   "name": "feleme-miniprogram",
   "version": "1.0.0",
-  "description": "职场清醒笔记微信小程序 - 登录载体 + WebView嵌入现有H5",
+  "description": "A里味微信小程序 - 登录载体 + WebView嵌入现有H5",
   "keywords": ["wechat", "miniprogram", "webview"]
 }
