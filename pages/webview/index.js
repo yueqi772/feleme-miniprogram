@@ -1,1 +1,180 @@
-Ly8gV2ViVmlldyDpobXvvJrliqDovb0gSDUg5bm25qGl5o6l5pWw5o2u5bqT5pON5L2cCnZhciBINV9CQVNFID0gJ2h0dHBzOi8vaWtrc3NlYjN0cnJoLnNwYWNlLm1pbmltYXhpLmNvbS8nOzsKClBhZ2UoewogIGRhdGE6IHsKICAgIHNyYzogSDVfQkFTRSwKICAgIGxvYWRlZDogZmFsc2UsCiAgfSwKCiAgb25Mb2FkOiBmdW5jdGlvbihxdWVyeSkgewogICAgdmFyIGxvZ2luRGF0YSA9IHF1ZXJ5LmxvZ2luRGF0YTsKICAgIGlmIChsb2dpbkRhdGEpIHsKICAgICAgdHJ5IHsKICAgICAgICB2YXIgZGF0YSA9IEpTT04ucGFyc2UoZGVjb2RlVVJJQ29tcG9uZW50KGxvZ2luRGF0YSkpOwogICAgICAgIHZhciBwYXJhbXMgPSBbCiAgICAgICAgICAnX19tcF9sb2dpbj0xJywKICAgICAgICAgICduaWNrbmFtZT0nICsgZW5jb2RlVVJJQ29tcG9uZW50KGRhdGEubmlja25hbWUgfHwgJycpLAogICAgICAgICAgJ2F2YXRhcj0nICsgZW5jb2RlVVJJQ29tcG9uZW50KGRhdGEuYXZhdGFyVXJsIHx8ICcnKSwKICAgICAgICAgICdnZW5kZXI9JyArIFN0cmluZyhkYXRhLmdlbmRlciB8fCAwKSwKICAgICAgICAgICdwcm92aW5jZT0nICsgZW5jb2RlVVJJQ29tcG9uZW50KGRhdGEucHJvdmluY2UgfHwgJycpLAogICAgICAgICAgJ2NpdHk9JyArIGVuY29kZVVSSUNvbXBvbmVudChkYXRhLmNpdHkgfHwgJycpLAogICAgICAgICAgJ29wZW5pZD0nICsgZW5jb2RlVVJJQ29tcG9uZW50KGRhdGEub3BlbmlkIHx8ICcnKSwKICAgICAgICAgICd1bmlvbmlkPScgKyBlbmNvZGVVUklDb21wb25lbnQoZGF0YS51bmlvbmlkIHx8ICcnKSwKICAgICAgICAgICdmcm9tPW1pbmlwcm9ncmFtJywKICAgICAgICAgICdfdD0nICsgRGF0ZS5ub3coKSwKICAgICAgICBdLmpvaW4oJyYnKTsKICAgICAgICB0aGlzLnNldERhdGEoeyBzcmM6IEg1X0JBU0UgKyAnPycgKyBwYXJhbXMgfSk7CiAgICAgIH0gY2F0Y2goZSkgewogICAgICAgIGNvbnNvbGUuZXJyb3IoJ+ino+aekOeZu+W9leaVsOaNruWksei0pScsIGUpOwogICAgICB9CiAgICB9CiAgfSwKCiAgb25XZWJWaWV3TG9hZDogZnVuY3Rpb24oKSB7CiAgICBjb25zb2xlLmxvZygn44CQd2Vidmlld+OAkUg1IOmhtemdouWKoOi9veaIkOWKnycpOwogICAgdGhpcy5zZXREYXRhKHsgbG9hZGVkOiB0cnVlIH0pOwogIH0sCgogIG9uV2ViVmlld0Vycm9yOiBmdW5jdGlvbigpIHsKICAgIGNvbnNvbGUuZXJyb3IoJ+OAkHdlYnZpZXfjgJFINSDpobXpnaLliqDovb3plJnor68nKTsKICAgIHRoaXMuc2V0RGF0YSh7IGxvYWRlZDogdHJ1ZSB9KTsKICAgIHd4LnNob3dUb2FzdCh7IHRpdGxlOiAn6aG16Z2i5Yqg6L295aSx6LSlJywgaWNvbjogJ25vbmUnIH0pOwogIH0sCgogIG9uV2ViVmlld01lc3NhZ2U6IGZ1bmN0aW9uKGUpIHsKICAgIHZhciBtc2dzID0gKGUuZGV0YWlsICYmIGUuZGV0YWlsLmRhdGEpIHx8IFtdOwogICAgZm9yICh2YXIgaSA9IDA7IGkgPCBtc2dzLmxlbmd0aDsgaSsrKSB7CiAgICAgIHRoaXMuaGFuZGxlSDVNZXNzYWdlKG1zZ3NbaV0pOwogICAgfQogIH0sCgogIC8vIOWkhOeQhiBINSDlj5HmnaXnmoTlkITnsbvmtojmga8KICBoYW5kbGVINU1lc3NhZ2U6IGZ1bmN0aW9uKG1zZykgewogICAgdmFyIG1zZ0lkID0gbXNnLm1zZ0lkOwogICAgdmFyIHR5cGUgPSBtc2cudHlwZTsKICAgIHZhciBwYXlsb2FkID0gbXNnLnBheWxvYWQgfHwge307CgogICAgLy8g4pSA4pSA4pSAIOaPoeaJiyAvIOW/g+i3syDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAKICAgIGlmICh0eXBlID09PSAnUElORycpIHsKICAgICAgY29uc29sZS5sb2coJ+OAkHdlYnZpZXfjgJHmlLbliLAgUElOR++8jOWbnuWkjSBQT05HJyk7CiAgICAgIHRoaXMucmVwbHlUb0g1KHsgbXNnSWQ6IG1zZ0lkLCB0eXBlOiAnUE9ORycgfSk7CiAgICAgIHJldHVybjsKICAgIH0KCiAgICBpZiAodHlwZSA9PT0gJ0g1X1JFUVVFU1RfTE9HSU4nKSB7CiAgICAgIHd4LnJlZGlyZWN0VG8oeyB1cmw6ICcvcGFnZXMvbG9naW4vaW5kZXgnIH0pOwogICAgICByZXR1cm47CiAgICB9CgogICAgLy8g4pSA4pSA4pSAIOaVsOaNruW6k+WGmeaTjeS9nCDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAKICAgIGlmICh0eXBlID09PSAnREJfQUREJykgewogICAgICB0aGlzLmNhbGxDbG91ZCgndGNiJywgewogICAgICAgIGNvbGxlY3Rpb246IHBheWxvYWQuY29sbGVjdGlvbiwKICAgICAgICBhY3Rpb246ICdhZGQnLAogICAgICAgIGRhdGE6IHBheWxvYWQuZGF0YSwKICAgICAgfSkudGhlbihmdW5jdGlvbihyZXMpIHsKICAgICAgICB0aGlzLnJlcGx5VG9INSh7IG1zZ0lkOiBtc2dJZCwgc3VjY2VzczogcmVzLnN1Y2Nlc3MsIGlkOiByZXMuaWQsIGVycm9yOiByZXMuZXJyb3IgfSk7CiAgICAgIH0uYmluZCh0aGlzKSk7CiAgICAgIHJldHVybjsKICAgIH0KCiAgICBpZiAodHlwZSA9PT0gJ0RCX1VQREFURScpIHsKICAgICAgdGhpcy5jYWxsQ2xvdWQoJ3RjYicsIHsKICAgICAgICBjb2xsZWN0aW9uOiBwYXlsb2FkLmNvbGxlY3Rpb24sCiAgICAgICAgYWN0aW9uOiAndXBkYXRlJywKICAgICAgICBkYXRhOiBwYXlsb2FkLmRhdGEsCiAgICAgICAgcXVlcnk6IHBheWxvYWQucXVlcnksCiAgICAgIH0pLnRoZW4oZnVuY3Rpb24ocmVzKSB7CiAgICAgICAgdGhpcy5yZXBseVRvSDUoeyBtc2dJZDogbXNnSWQsIHN1Y2Nlc3M6IHJlcy5zdWNjZXNzLCBlcnJvcjogcmVzLmVycm9yIH0pOwogICAgICB9LmJpbmQodGhpcykpOwogICAgICByZXR1cm47CiAgICB9CgogICAgaWYgKHR5cGUgPT09ICdEQl9TRVQnKSB7CiAgICAgIC8vIOimhuWGme+8iOWFiOafpeWQjuWIoOWGjeaPkuWFpe+8jOS/neivgeWUr+S4gO+8iQogICAgICB0aGlzLmNhbGxDbG91ZCgndGNiJywgewogICAgICAgIGNvbGxlY3Rpb246IHBheWxvYWQuY29sbGVjdGlvbiwKICAgICAgICBhY3Rpb246ICd1cHNlcnQnLAogICAgICAgIGRhdGE6IHBheWxvYWQuZGF0YSwKICAgICAgICBxdWVyeTogcGF5bG9hZC5xdWVyeSwKICAgICAgfSkudGhlbihmdW5jdGlvbihyZXMpIHsKICAgICAgICB0aGlzLnJlcGx5VG9INSh7IG1zZ0lkOiBtc2dJZCwgc3VjY2VzczogcmVzLnN1Y2Nlc3MsIGVycm9yOiByZXMuZXJyb3IgfSk7CiAgICAgIH0uYmluZCh0aGlzKSk7CiAgICAgIHJldHVybjsKICAgIH0KCiAgICBpZiAodHlwZSA9PT0gJ0RCX0lOQ1InKSB7CiAgICAgIHRoaXMuY2FsbENsb3VkKCd0Y2InLCB7CiAgICAgICAgY29sbGVjdGlvbjogcGF5bG9hZC5jb2xsZWN0aW9uLAogICAgICAgIGFjdGlvbjogJ3VwZGF0ZScsCiAgICAgICAgZGF0YTogcGF5bG9hZC5kYXRhLAogICAgICAgIHF1ZXJ5OiBwYXlsb2FkLnF1ZXJ5LAogICAgICB9KS50aGVuKGZ1bmN0aW9uKHJlcykgewogICAgICAgIHRoaXMucmVwbHlUb0g1KHsgbXNnSWQ6IG1zZ0lkLCBzdWNjZXNzOiByZXMuc3VjY2VzcywgZXJyb3I6IHJlcy5lcnJvciB9KTsKICAgICAgfS5iaW5kKHRoaXMpKTsKICAgICAgcmV0dXJuOwogICAgfQoKICAgIGlmICh0eXBlID09PSAnREJfTElTVCcpIHsKICAgICAgdGhpcy5jYWxsQ2xvdWQoJ3RjYicsIHsKICAgICAgICBjb2xsZWN0aW9uOiBwYXlsb2FkLmNvbGxlY3Rpb24sCiAgICAgICAgYWN0aW9uOiAnbGlzdCcsCiAgICAgICAgb3BlbmlkOiBwYXlsb2FkLm9wZW5pZCB8fCAnJywKICAgICAgICBsaW1pdDogcGF5bG9hZC5saW1pdCB8fCAyMCwKICAgICAgICBza2lwOiBwYXlsb2FkLnNraXAgfHwgMCwKICAgICAgfSkudGhlbihmdW5jdGlvbihyZXMpIHsKICAgICAgICB0aGlzLnJlcGx5VG9INSh7IG1zZ0lkOiBtc2dJZCwgc3VjY2VzczogcmVzLnN1Y2Nlc3MsIGxpc3Q6IHJlcy5saXN0IHx8IFtdLCBlcnJvcjogcmVzLmVycm9yIH0pOwogICAgICB9LmJpbmQodGhpcykpOwogICAgICByZXR1cm47CiAgICB9CgogICAgaWYgKHR5cGUgPT09ICdEQl9HRVQnKSB7CiAgICAgIHRoaXMuY2FsbENsb3VkKCd0Y2InLCB7CiAgICAgICAgY29sbGVjdGlvbjogcGF5bG9hZC5jb2xsZWN0aW9uLAogICAgICAgIGFjdGlvbjogJ2dldCcsCiAgICAgICAgcXVlcnk6IHBheWxvYWQucXVlcnksCiAgICAgIH0pLnRoZW4oZnVuY3Rpb24ocmVzKSB7CiAgICAgICAgdGhpcy5yZXBseVRvSDUoeyBtc2dJZDogbXNnSWQsIHN1Y2Nlc3M6IHJlcy5zdWNjZXNzLCBkYXRhOiByZXMuZGF0YSwgZXJyb3I6IHJlcy5lcnJvciB9KTsKICAgICAgfS5iaW5kKHRoaXMpKTsKICAgICAgcmV0dXJuOwogICAgfQoKICAgIC8vIOKUgOKUgOKUgCDnmbvlvZXnirbmgIHmn6Xor6Ig4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSACiAgICBpZiAodHlwZSA9PT0gJ0dFVF9MT0dJTl9JTkZPJykgewogICAgICB2YXIgbG9naW5EYXRhID0gd3guZ2V0U3RvcmFnZVN5bmMoJ2ZlbGVtZV9sb2dpbl9yZXN1bHQnKSB8fCB7fTsKICAgICAgdGhpcy5yZXBseVRvSDUoeyBtc2dJZDogbXNnSWQgfHwgbnVsbCwgdHlwZTogJ0xPR0lOX0lORk8nLCBkYXRhOiBsb2dpbkRhdGEgfSk7CiAgICAgIHJldHVybjsKICAgIH0KCiAgICBjb25zb2xlLmxvZygn44CQd2Vidmlld+OAkeacquefpea2iOaBr+exu+WeizonLCB0eXBlLCBtc2cpOwogIH0sCgogIC8vIOiwg+eUqOS6keWHveaVsO+8iOe7n+S4gOWFpeWPo++8iQogIGNhbGxDbG91ZDogZnVuY3Rpb24obmFtZSwgZGF0YSkgewogICAgcmV0dXJuIG5ldyBQcm9taXNlKGZ1bmN0aW9uKHJlc29sdmUpIHsKICAgICAgd3guY2xvdWQuY2FsbCh7CiAgICAgICAgY29uZmlnOiB7IGVudjogJ2Nsb3VkYmFzZS0zZzIyYzljZTViY2YwZTU1JyB9LAogICAgICAgIG5hbWU6IG5hbWUsCiAgICAgICAgZGF0YTogZGF0YSwKICAgICAgICBzdWNjZXNzOiBmdW5jdGlvbihyZXMpIHsKICAgICAgICAgIGNvbnNvbGUubG9nKCfjgJBjbG91ZC4nICsgbmFtZSArICfjgJHmiJDlip86JywgZGF0YS5hY3Rpb24sIHJlcy5yZXN1bHQpOwogICAgICAgICAgcmVzb2x2ZShyZXMucmVzdWx0IHx8IHt9KTsKICAgICAgICB9LAogICAgICAgIGZhaWw6IGZ1bmN0aW9uKGVycikgewogICAgICAgICAgY29uc29sZS5lcnJvcign44CQY2xvdWQuJyArIG5hbWUgKyAn44CR5aSx6LSlOicsIGVycik7CiAgICAgICAgICByZXNvbHZlKHsgc3VjY2VzczogZmFsc2UsIGVycm9yOiBlcnIuZXJyTXNnIHx8ICfkupHlh73mlbDosIPnlKjlpLHotKUnIH0pOwogICAgICAgIH0sCiAgICAgIH0pOwogICAgfSk7CiAgfSwKCiAgLy8g5ZCRIEg1IOWPkea2iOaBrwogIHJlcGx5VG9INTogZnVuY3Rpb24oZGF0YSkgewogICAgdHJ5IHsKICAgICAgd3gubWluaVByb2dyYW0ucG9zdE1lc3NhZ2UoeyBkYXRhOiBkYXRhIH0pOwogICAgfSBjYXRjaChlKSB7CiAgICAgIGNvbnNvbGUuZXJyb3IoJ+WbnuWkjSBINSDlpLHotKU6JywgZSk7CiAgICB9CiAgfSwKfSk7Cg==
+// WebView 页：加载 H5 并桥接数据库操作
+var H5_BASE = 'https://ikksseb3trrh.space.minimaxi.com/';
+
+Page({
+  data: {
+    src: H5_BASE,
+    loaded: false,
+  },
+
+  onLoad: function(query) {
+    var loginData = query.loginData;
+    if (loginData) {
+      try {
+        var data = JSON.parse(decodeURIComponent(loginData));
+        var params = [
+          '__mp_login=1',
+          'nickname=' + encodeURIComponent(data.nickname || ''),
+          'avatar=' + encodeURIComponent(data.avatarUrl || ''),
+          'gender=' + String(data.gender || 0),
+          'province=' + encodeURIComponent(data.province || ''),
+          'city=' + encodeURIComponent(data.city || ''),
+          'openid=' + encodeURIComponent(data.openid || ''),
+          'unionid=' + encodeURIComponent(data.unionid || ''),
+          'from=miniprogram',
+          '_t=' + Date.now(),
+        ].join('&');
+        this.setData({ src: H5_BASE + '?' + params });
+      } catch(e) {
+        console.error('解析登录数据失败', e);
+      }
+    }
+  },
+
+  onWebViewLoad: function() {
+    console.log('【webview】H5 页面加载成功');
+    this.setData({ loaded: true });
+  },
+
+  onWebViewError: function() {
+    console.error('【webview】H5 页面加载错误');
+    this.setData({ loaded: true });
+    wx.showToast({ title: '页面加载失败', icon: 'none' });
+  },
+
+  onWebViewMessage: function(e) {
+    var msgs = (e.detail && e.detail.data) || [];
+    for (var i = 0; i < msgs.length; i++) {
+      this.handleH5Message(msgs[i]);
+    }
+  },
+
+  // 处理 H5 发来的各类消息
+  handleH5Message: function(msg) {
+    var msgId = msg.msgId;
+    var type = msg.type;
+    var payload = msg.payload || {};
+
+    // ─── 握手 / 心跳 ───────────────────────────────
+    if (type === 'PING') {
+      console.log('【webview】收到 PING，回复 PONG');
+      this.replyToH5({ msgId: msgId, type: 'PONG' });
+      return;
+    }
+
+    if (type === 'H5_REQUEST_LOGIN') {
+      wx.redirectTo({ url: '/pages/login/index' });
+      return;
+    }
+
+    // ─── 数据库写操作 ───────────────────────────────
+    if (type === 'DB_ADD') {
+      this.callCloud('tcb', {
+        collection: payload.collection,
+        action: 'add',
+        data: payload.data,
+      }).then(function(res) {
+        this.replyToH5({ msgId: msgId, success: res.success, id: res.id, error: res.error });
+      }.bind(this));
+      return;
+    }
+
+    if (type === 'DB_UPDATE') {
+      this.callCloud('tcb', {
+        collection: payload.collection,
+        action: 'update',
+        data: payload.data,
+        query: payload.query,
+      }).then(function(res) {
+        this.replyToH5({ msgId: msgId, success: res.success, error: res.error });
+      }.bind(this));
+      return;
+    }
+
+    if (type === 'DB_SET') {
+      // 覆写（先查后删再插入，保证唯一）
+      this.callCloud('tcb', {
+        collection: payload.collection,
+        action: 'upsert',
+        data: payload.data,
+        query: payload.query,
+      }).then(function(res) {
+        this.replyToH5({ msgId: msgId, success: res.success, error: res.error });
+      }.bind(this));
+      return;
+    }
+
+    if (type === 'DB_INCR') {
+      this.callCloud('tcb', {
+        collection: payload.collection,
+        action: 'update',
+        data: payload.data,
+        query: payload.query,
+      }).then(function(res) {
+        this.replyToH5({ msgId: msgId, success: res.success, error: res.error });
+      }.bind(this));
+      return;
+    }
+
+    if (type === 'DB_LIST') {
+      this.callCloud('tcb', {
+        collection: payload.collection,
+        action: 'list',
+        openid: payload.openid || '',
+        limit: payload.limit || 20,
+        skip: payload.skip || 0,
+      }).then(function(res) {
+        this.replyToH5({ msgId: msgId, success: res.success, list: res.list || [], error: res.error });
+      }.bind(this));
+      return;
+    }
+
+    if (type === 'DB_GET') {
+      this.callCloud('tcb', {
+        collection: payload.collection,
+        action: 'get',
+        query: payload.query,
+      }).then(function(res) {
+        this.replyToH5({ msgId: msgId, success: res.success, data: res.data, error: res.error });
+      }.bind(this));
+      return;
+    }
+
+    // ─── 登录状态查询 ─────────────────────────────
+    if (type === 'GET_LOGIN_INFO') {
+      var loginData = wx.getStorageSync('feleme_login_result') || {};
+      this.replyToH5({ msgId: msgId || null, type: 'LOGIN_INFO', data: loginData });
+      return;
+    }
+
+    console.log('【webview】未知消息类型:', type, msg);
+  },
+
+  // 调用云函数（统一入口）
+  callCloud: function(name, data) {
+    return new Promise(function(resolve) {
+      wx.cloud.call({
+        config: { env: 'cloudbase-3g22c9ce5bcf0e55' },
+        name: name,
+        data: data,
+        success: function(res) {
+          console.log('【cloud.' + name + '】成功:', data.action, res.result);
+          resolve(res.result || {});
+        },
+        fail: function(err) {
+          console.error('【cloud.' + name + '】失败:', err);
+          resolve({ success: false, error: err.errMsg || '云函数调用失败' });
+        },
+      });
+    });
+  },
+
+  // 向 H5 发消息
+  replyToH5: function(data) {
+    try {
+      wx.miniProgram.postMessage({ data: data });
+    } catch(e) {
+      console.error('回复 H5 失败:', e);
+    }
+  },
+});
