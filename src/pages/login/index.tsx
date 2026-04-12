@@ -1,164 +1,64 @@
 import { Component } from 'react';
-import { View, Text, Button } from '@tarojs/components';
-import Taro from '@tarojs/taro';
+import { View, Text, Button, Image } from '@tarojs/components';
+import { useRouter } from '@tarojs/taro';
 import './index.scss';
-
-// 云函数配置
-const CLOUD_FUNCTION = {
-  LOGIN: 'login', // 登录云函数名称
-};
 
 export default class Login extends Component {
   state = { loading: false, error: '' };
 
-  componentDidMount() {
-    // 检查是否已登录
-    const loginResult = Taro.getStorageSync('feleme_login_result');
-    if (loginResult && loginResult.loginToken) {
-      // 已登录，直接跳转
-      this.navigateToWebView(loginResult);
-    }
-  }
-
-  /**
-   * 简化版登录：点一下按钮静默登录
-   */
   async handleLogin() {
     this.setState({ loading: true, error: '' });
 
     try {
-      // Step 1: 获取微信登录凭证
-      console.log('开始登录...');
-
+      // Step 1: 获取微信登录凭证（code）
       const loginRes = await new Promise((resolve, reject) => {
-        Taro.login({
-          success: resolve,
-          fail: reject,
-        });
+        wx.login({ success: resolve, fail: reject });
       });
-
       const { code } = loginRes as any;
-      console.log('获取code成功:', code);
 
       if (!code) {
         this.setState({ loading: false, error: '获取登录凭证失败，请重试' });
         return;
       }
 
-      Taro.showLoading({ title: '登录中…' });
-
-      // Step 2: 调用云函数登录
-      console.log('调用云函数...');
-      let cloudResult: any;
-
-      try {
-        cloudResult = await Taro.cloud.callFunction({
-          name: CLOUD_FUNCTION.LOGIN,
-          data: { code },
+      // Step 2: 获取用户基本信息（昵称、头像）
+      const profileRes = await new Promise((resolve, reject) => {
+        wx.getUserProfile({
+          desc: '用于展示您的个人信息',
+          success: resolve,
+          fail: reject,
         });
-        console.log('云函数调用成功:', cloudResult);
-      } catch (cloudErr: any) {
-        console.error('云函数调用失败:', cloudErr);
-        Taro.hideLoading();
+      });
+      const userInfo = (profileRes as any).userInfo;
 
-        // 云函数调用失败，使用备用方案
-        console.log('使用备用登录方案...');
-        await this.fallbackLogin(code);
-        return;
-      }
-
-      Taro.hideLoading();
-
-      const result = cloudResult.result as any;
-      console.log('云函数返回:', result);
-
-      if (!result?.success) {
-        this.setState({ loading: false, error: result?.error || '登录失败' });
-        return;
-      }
-
-      // Step 3: 保存登录结果
-      const loginData = result.data;
-      Taro.setStorageSync('feleme_login_result', loginData);
-      console.log('登录成功，跳转...');
-
-      // Step 4: 跳转
-      this.navigateToWebView(loginData);
-    } catch (err: any) {
-      Taro.hideLoading();
-      console.error('登录异常:', err);
-
-      const errMsg = err?.errMsg || err?.message || '';
-
-      if (errMsg.includes('cloud')) {
-        // 尝试备用登录
-        console.log('云服务出错，尝试备用登录...');
-        await this.fallbackLogin(null);
-      } else {
-        this.setState({ loading: false, error: errMsg || '登录失败，请重试' });
-      }
-    }
-  }
-
-  /**
-   * 备用登录方案：不依赖云函数，直接生成临时token
-   */
-  async fallbackLogin(code: string | null) {
-    try {
-      console.log('执行备用登录...');
-
-      // 获取 openid（如果可以）
-      let openid = '';
-
-      // 创建本地登录数据
+      // Step 3: 构建登录数据（实际生产中 code 应发往你的后端换 openid）
       const loginData = {
-        userId: 'local_' + Date.now(),
-        openid: openid,
-        nickname: '微信用户',
-        avatarUrl: '',
-        gender: 0,
-        province: '',
-        city: '',
-        loginToken: 'local_token_' + Date.now(),
-        loginTime: new Date().toISOString(),
-        isLocalLogin: true, // 标记为本地登录
+        code,
+        nickname: userInfo.nickName,
+        avatarUrl: userInfo.avatarUrl,
+        gender: userInfo.gender, // 1=男, 2=女
+        province: userInfo.province,
+        city: userInfo.city,
+        loginTime: Date.now(),
       };
 
-      Taro.setStorageSync('feleme_login_result', loginData);
-      console.log('备用登录成功，跳转...');
+      // Step 4: 存储登录态
+      wx.setStorageSync('feleme_login', loginData);
 
-      this.navigateToWebView(loginData);
-    } catch (err) {
-      console.error('备用登录也失败:', err);
-      this.setState({ loading: false, error: '登录失败，请检查网络后重试' });
+      // Step 5: 跳转 WebView 页面，携带登录数据
+      const encoded = encodeURIComponent(JSON.stringify(loginData));
+      wx.redirectTo({
+        url: `/pages/webview/index?loginData=${encoded}&from=miniprogram`,
+      });
+    } catch (err: any) {
+      console.error('登录失败', err);
+      const msg = err?.errMsg || '';
+      if (msg.includes('auth deny') || msg.includes('cancel')) {
+        this.setState({ loading: false, error: '您已拒绝授权，可重新点击登录' });
+      } else {
+        this.setState({ loading: false, error: err?.errMsg || '登录失败，请重试' });
+      }
     }
-  }
-
-  /**
-   * 跳转到 WebView 页面
-   */
-  navigateToWebView(loginData: any) {
-    const params = new URLSearchParams({
-      __mp_login: '1',
-      userId: loginData.userId || '',
-      openid: loginData.openid || '',
-      nickname: loginData.nickname || '微信用户',
-      avatar: loginData.avatarUrl || '',
-      gender: String(loginData.gender || 0),
-      province: loginData.province || '',
-      city: loginData.city || '',
-      loginToken: loginData.loginToken || '',
-      from: 'miniprogram',
-      _t: String(Date.now()),
-    });
-
-    Taro.redirectTo({
-      url: `/pages/webview/index?${params.toString()}`,
-    });
-  }
-
-  goBack() {
-    Taro.navigateBack();
   }
 
   render() {
@@ -169,23 +69,23 @@ export default class Login extends Component {
           <View className="logo-ring large">
             <Text className="logo-emoji">🌿</Text>
           </View>
-          <Text className="app-name">职场清醒笔记</Text>
-          <Text className="welcome">一键登录</Text>
+          <Text className="app-name">A里味</Text>
+          <Text className="welcome">欢迎使用</Text>
         </View>
 
         <View className="card info-card">
           <Text className="card-title">登录说明</Text>
           <View className="info-row">
-            <Text className="info-icon">⚡</Text>
-            <Text className="info-text">点击按钮即可完成登录</Text>
-          </View>
-          <View className="info-row">
             <Text className="info-icon">🔒</Text>
-            <Text className="info-text">无需填写任何信息</Text>
+            <Text className="info-text">我们仅获取您的昵称和头像</Text>
           </View>
           <View className="info-row">
-            <Text className="info-icon">☁️</Text>
-            <Text className="info-text">数据安全存储在微信云端</Text>
+            <Text className="info-icon">🚫</Text>
+            <Text className="info-text">不会获取手机号、位置等敏感信息</Text>
+          </View>
+          <View className="info-row">
+            <Text className="info-icon">📴</Text>
+            <Text className="info-text">数据仅存储在本地和您的账号下</Text>
           </View>
         </View>
 
@@ -201,9 +101,9 @@ export default class Login extends Component {
             loading={loading}
             onClick={this.handleLogin}
           >
-            {loading ? '登录中…' : '微信一键登录'}
+            {loading ? '登录中…' : '微信授权登录'}
           </Button>
-          <Button className="btn-back" onClick={this.goBack}>
+          <Button className="btn-back" onClick={() => wx.navigateBack()}>
             返回
           </Button>
         </View>
