@@ -27,13 +27,13 @@ export default class Index extends Component {
           <View className="logo-ring">
             <Text className="logo-emoji">🌿</Text>
           </View>
-          <Text className="title">职场清醒笔记</Text>
-          <Text className="subtitle">职场情绪管理与自我认知工具</Text>
+          <Text className="title">A里味</Text>
+          <Text className="subtitle">A里味 — 你的职场情绪伙伴</Text>
         </View>
 
         <View className="features">
           {[
-            { icon: '🧠', title: '精准识别', desc: 'AI 驱动的职场情绪分析' },
+            { icon: '🧠', title: '精准识别', desc: 'AI 驱动的精准情绪分析' },
             { icon: '🌳', title: '情绪树洞', desc: '安全私密的情绪倾诉空间' },
             { icon: '💬', title: '话术练习', desc: '真实场景对话模拟训练' },
           ].map(f => (
