@@ -83,7 +83,7 @@ Page({
    */
   navigateToWebView(loginData) {
     wx.setStorageSync('feleme_login_result', loginData);
-    wx.switchTab({
+    wx.redirectTo({
       url: '/pages/webview/index',
     });
   },
