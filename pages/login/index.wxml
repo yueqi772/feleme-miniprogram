@@ -1,18 +1,18 @@
 <view class="container page-login">
   <view class="header">
     <view class="logo-ring"><text class="logo-emoji">🌿</text></view>
-    <text class="app-name">职场清醒笔记</text>
-    <text class="welcome">一键登录</text>
+    <text class="app-name">A里味</text>
+    <text class="welcome">欢迎使用</text>
   </view>
   <view class="info-card">
     <text class="card-title">登录说明</text>
-    <view class="info-row"><text class="info-icon">⚡</text><text class="info-text">点击按钮即可完成登录</text></view>
-    <view class="info-row"><text class="info-icon">🔒</text><text class="info-text">无需填写任何信息</text></view>
-    <view class="info-row"><text class="info-icon">☁️</text><text class="info-text">数据安全存储在微信云端</text></view>
+    <view class="info-row"><text class="info-icon">🔒</text><text class="info-text">仅获取您的昵称和头像</text></view>
+    <view class="info-row"><text class="info-icon">🚫</text><text class="info-text">不获取手机号、位置等敏感信息</text></view>
+    <view class="info-row"><text class="info-icon">📴</text><text class="info-text">数据仅存储在您的本地设备</text></view>
   </view>
   <view class="error-box" wx:if="{{errorMsg}}"><text class="error-text">{{errorMsg}}</text></view>
   <view class="bottom-area">
-    <button class="btn-wechat" loading="{{loading}}" bindtap="handleLogin">{{loading ? '登录中…' : '微信一键登录'}}</button>
+    <button class="btn-wechat" loading="{{loading}}" bindtap="handleLogin">{{loading ? '登录中…' : '微信授权登录'}}</button>
     <button class="btn-ghost" bindtap="goBack">返回</button>
   </view>
 </view>
