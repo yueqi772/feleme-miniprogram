@@ -75,13 +75,13 @@ Page({
 
   /**
    * 跳转到 WebView 页面
-   * webview 是 tabBar 页面，必须用 switchTab（不支持 redirectTo 传参）
-   * 登录数据已存入 Storage，webview 页面从 Storage 读取
+   * 登录数据存入 Storage，并通过 URL 参数传递给 webview 页面
    */
   navigateToWebView(loginData) {
     wx.setStorageSync('feleme_login_result', loginData);
-    wx.switchTab({
-      url: '/pages/webview/index',
+    var param = encodeURIComponent(JSON.stringify(loginData));
+    wx.redirectTo({
+      url: '/pages/webview/index?loginData=' + param,
     });
   },
 

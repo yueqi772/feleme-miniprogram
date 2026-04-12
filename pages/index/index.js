@@ -12,8 +12,7 @@ Page({
     // 每次显示首页都检查登录状态，已登录则跳 webview
     var login = wx.getStorageSync('feleme_login_result');
     if (login && login.loginToken) {
-      // webview 是 tabBar 页面，必须用 switchTab
-      wx.switchTab({ url: '/pages/webview/index' });
+      wx.redirectTo({ url: '/pages/webview/index' });
     }
   },
 
