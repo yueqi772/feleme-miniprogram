@@ -2,8 +2,8 @@
   "miniprogramRoot": "./",
   "cloudfunctionRoot": "cloudfunctions/",
   "projectname": "feleme-miniprogram",
-  "description": "职场清醒笔记微信小程序",
-  "appid": "wx1a0032fd8bb576bd",
+  "description": "A里味微信小程序",
+  "appid": "YOUR_APPID_HERE",
   "setting": {
     "urlCheck": false,
     "es6": true,
@@ -16,6 +16,5 @@
   },
   "compileType": "miniprogram",
   "libVersion": "2.33.0",
-  "condition": {},
-  "cloudfunctionTemplateRoot": "cloudfunctionTemplate/"
+  "condition": {}
 }
