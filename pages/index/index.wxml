@@ -1,8 +1,8 @@
 <view class="container page-index">
   <view class="hero">
     <view class="logo-ring"><text class="logo-emoji">🌿</text></view>
-    <text class="title">职场清醒笔记</text>
-    <text class="subtitle">职场情绪管理与自我成长工具</text>
+    <text class="title">A里味</text>
+    <text class="subtitle">A里味 — 你的职场情绪伙伴</text>
   </view>
   <view class="feature-list">
     <view class="feature-card" wx:for="{{features}}" wx:key="title">
