@@ -1,1 +1,20 @@
-ewogICJtaW5pcHJvZ3JhbVJvb3QiOiAiLi8iLAogICJjbG91ZGZ1bmN0aW9uUm9vdCI6ICJjbG91ZGZ1bmN0aW9ucy8iLAogICJwcm9qZWN0bmFtZSI6ICJmZWxlbWUtbWluaXByb2dyYW0iLAogICJkZXNjcmlwdGlvbiI6ICJB6YeM5ZGz5b6u5L+h5bCP56iL5bqPIiwKICAiYXBwaWQiOiAiWU9VUl9BUFBJRF9IRVJFIiwKICAic2V0dGluZyI6IHsKICAgICJ1cmxDaGVjayI6IGZhbHNlLAogICAgImVzNiI6IHRydWUsCiAgICAiZW5oYW5jZSI6IHRydWUsCiAgICAicG9zdGNzcyI6IHRydWUsCiAgICAibWluaWZpZWQiOiB0cnVlLAogICAgIm5ld0ZlYXR1cmUiOiB0cnVlLAogICAgImNvdmVyVmlldyI6IHRydWUsCiAgICAiYXV0b0F1ZGl0cyI6IGZhbHNlCiAgfSwKICAiY29tcGlsZVR5cGUiOiAibWluaXByb2dyYW0iLAogICJsaWJWZXJzaW9uIjogIjIuMzMuMCIsCiAgImNvbmRpdGlvbiI6IHt9Cn0K
+{
+  "miniprogramRoot": "./",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "projectname": "feleme-miniprogram",
+  "description": "A里味微信小程序",
+  "appid": "YOUR_APPID_HERE",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "autoAudits": false
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.33.0",
+  "condition": {}
+}

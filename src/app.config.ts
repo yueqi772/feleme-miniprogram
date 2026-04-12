@@ -1,1 +1,25 @@
-ZXhwb3J0IGRlZmF1bHQgZGVmaW5lQXBwQ29uZmlnKHsKICBwYWdlczogWwogICAgJ3BhZ2VzL2luZGV4L2luZGV4JywKICAgICdwYWdlcy9sb2dpbi9pbmRleCcsCiAgICAncGFnZXMvd2Vidmlldy9pbmRleCcsCiAgXSwKICB3aW5kb3c6IHsKICAgIGJhY2tncm91bmRUZXh0U3R5bGU6ICdsaWdodCcsCiAgICBuYXZpZ2F0aW9uQmFyQmFja2dyb3VuZENvbG9yOiAnI2ZmZicsCiAgICBuYXZpZ2F0aW9uQmFyVGl0bGVUZXh0OiAnQemHjOWRsycsCiAgICBuYXZpZ2F0aW9uQmFyVGV4dFN0eWxlOiAnYmxhY2snLAogIH0sCiAgdGFiQmFyOiB7CiAgICBjb2xvcjogJyM5OTknLAogICAgc2VsZWN0ZWRDb2xvcjogJyM0QTkwRTInLAogICAgYmFja2dyb3VuZENvbG9yOiAnI2ZmZicsCiAgICBib3JkZXJTdHlsZTogJ2JsYWNrJywKICAgIGxpc3Q6IFsKICAgICAgeyBwYWdlUGF0aDogJ3BhZ2VzL2luZGV4L2luZGV4JywgdGV4dDogJ+mmlumhtScsIGljb25QYXRoOiAnc3RhdGljL2hvbWUucG5nJywgc2VsZWN0ZWRJY29uUGF0aDogJ3N0YXRpYy9ob21lLWFjdGl2ZS5wbmcnIH0sCiAgICAgIHsgcGFnZVBhdGg6ICdwYWdlcy93ZWJ2aWV3L2luZGV4JywgdGV4dDogJ+e9kemhtScsIGljb25QYXRoOiAnc3RhdGljL3dlYi5wbmcnLCBzZWxlY3RlZEljb25QYXRoOiAnc3RhdGljL3dlYi1hY3RpdmUucG5nJyB9LAogICAgXSwKICB9LAogIHN0eWxlOiAndjInLAogIHNpdGVtYXBMb2NhdGlvbjogJ3NpdGVtYXAuanNvbicsCn0pOwo=
+export default defineAppConfig({
+  pages: [
+    'pages/index/index',
+    'pages/login/index',
+    'pages/webview/index',
+  ],
+  window: {
+    backgroundTextStyle: 'light',
+    navigationBarBackgroundColor: '#fff',
+    navigationBarTitleText: 'A里味',
+    navigationBarTextStyle: 'black',
+  },
+  tabBar: {
+    color: '#999',
+    selectedColor: '#4A90E2',
+    backgroundColor: '#fff',
+    borderStyle: 'black',
+    list: [
+      { pagePath: 'pages/index/index', text: '首页', iconPath: 'static/home.png', selectedIconPath: 'static/home-active.png' },
+      { pagePath: 'pages/webview/index', text: '网页', iconPath: 'static/web.png', selectedIconPath: 'static/web-active.png' },
+    ],
+  },
+  style: 'v2',
+  sitemapLocation: 'sitemap.json',
+});

@@ -1,1 +1,18 @@
-PHZpZXcgY2xhc3M9ImNvbnRhaW5lciBwYWdlLWxvZ2luIj4KICA8dmlldyBjbGFzcz0iaGVhZGVyIj4KICAgIDx2aWV3IGNsYXNzPSJsb2dvLXJpbmciPjx0ZXh0IGNsYXNzPSJsb2dvLWVtb2ppIj7wn4y/PC90ZXh0Pjwvdmlldz4KICAgIDx0ZXh0IGNsYXNzPSJhcHAtbmFtZSI+QemHjOWRszwvdGV4dD4KICAgIDx0ZXh0IGNsYXNzPSJ3ZWxjb21lIj7mrKLov47kvb/nlKg8L3RleHQ+CiAgPC92aWV3PgogIDx2aWV3IGNsYXNzPSJpbmZvLWNhcmQiPgogICAgPHRleHQgY2xhc3M9ImNhcmQtdGl0bGUiPueZu+W9leivtOaYjjwvdGV4dD4KICAgIDx2aWV3IGNsYXNzPSJpbmZvLXJvdyI+PHRleHQgY2xhc3M9ImluZm8taWNvbiI+8J+UkjwvdGV4dD48dGV4dCBjbGFzcz0iaW5mby10ZXh0Ij7ku4Xojrflj5bmgqjnmoTmmLXnp7DlkozlpLTlg488L3RleHQ+PC92aWV3PgogICAgPHZpZXcgY2xhc3M9ImluZm8tcm93Ij48dGV4dCBjbGFzcz0iaW5mby1pY29uIj7wn5qrPC90ZXh0Pjx0ZXh0IGNsYXNzPSJpbmZvLXRleHQiPuS4jeiOt+WPluaJi+acuuWPt+OAgeS9jee9ruetieaVj+aEn+S/oeaBrzwvdGV4dD48L3ZpZXc+CiAgICA8dmlldyBjbGFzcz0iaW5mby1yb3ciPjx0ZXh0IGNsYXNzPSJpbmZvLWljb24iPvCfk7Q8L3RleHQ+PHRleHQgY2xhc3M9ImluZm8tdGV4dCI+5pWw5o2u5LuF5a2Y5YKo5Zyo5oKo55qE5pys5Zyw6K6+5aSHPC90ZXh0Pjwvdmlldz4KICA8L3ZpZXc+CiAgPHZpZXcgY2xhc3M9ImVycm9yLWJveCIgd3g6aWY9Int7ZXJyb3JNc2d9fSI+PHRleHQgY2xhc3M9ImVycm9yLXRleHQiPnt7ZXJyb3JNc2d9fTwvdGV4dD48L3ZpZXc+CiAgPHZpZXcgY2xhc3M9ImJvdHRvbS1hcmVhIj4KICAgIDxidXR0b24gY2xhc3M9ImJ0bi13ZWNoYXQiIGxvYWRpbmc9Int7bG9hZGluZ319IiBiaW5kdGFwPSJoYW5kbGVMb2dpbiI+e3tsb2FkaW5nID8gJ+eZu+W9leS4reKApicgOiAn5b6u5L+h5o6I5p2D55m75b2VJ319PC9idXR0b24+CiAgICA8YnV0dG9uIGNsYXNzPSJidG4tZ2hvc3QiIGJpbmR0YXA9ImdvQmFjayI+6L+U5ZuePC9idXR0b24+CiAgPC92aWV3Pgo8L3ZpZXc+Cg==
+<view class="container page-login">
+  <view class="header">
+    <view class="logo-ring"><text class="logo-emoji">🌿</text></view>
+    <text class="app-name">A里味</text>
+    <text class="welcome">欢迎使用</text>
+  </view>
+  <view class="info-card">
+    <text class="card-title">登录说明</text>
+    <view class="info-row"><text class="info-icon">🔒</text><text class="info-text">仅获取您的昵称和头像</text></view>
+    <view class="info-row"><text class="info-icon">🚫</text><text class="info-text">不获取手机号、位置等敏感信息</text></view>
+    <view class="info-row"><text class="info-icon">📴</text><text class="info-text">数据仅存储在您的本地设备</text></view>
+  </view>
+  <view class="error-box" wx:if="{{errorMsg}}"><text class="error-text">{{errorMsg}}</text></view>
+  <view class="bottom-area">
+    <button class="btn-wechat" loading="{{loading}}" bindtap="handleLogin">{{loading ? '登录中…' : '微信授权登录'}}</button>
+    <button class="btn-ghost" bindtap="goBack">返回</button>
+  </view>
+</view>

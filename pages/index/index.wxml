@@ -1,1 +1,20 @@
-PHZpZXcgY2xhc3M9ImNvbnRhaW5lciBwYWdlLWluZGV4Ij4KICA8dmlldyBjbGFzcz0iaGVybyI+CiAgICA8dmlldyBjbGFzcz0ibG9nby1yaW5nIj48dGV4dCBjbGFzcz0ibG9nby1lbW9qaSI+8J+MvzwvdGV4dD48L3ZpZXc+CiAgICA8dGV4dCBjbGFzcz0idGl0bGUiPkHph4zlkbM8L3RleHQ+CiAgICA8dGV4dCBjbGFzcz0ic3VidGl0bGUiPkHph4zlkbMg4oCUIOS9oOeahOiBjOWcuuaDhee7quS8meS8tDwvdGV4dD4KICA8L3ZpZXc+CiAgPHZpZXcgY2xhc3M9ImZlYXR1cmUtbGlzdCI+CiAgICA8dmlldyBjbGFzcz0iZmVhdHVyZS1jYXJkIiB3eDpmb3I9Int7ZmVhdHVyZXN9fSIgd3g6a2V5PSJ0aXRsZSI+CiAgICAgIDx0ZXh0IGNsYXNzPSJmZWF0dXJlLWljb24iPnt7aXRlbS5pY29ufX08L3RleHQ+CiAgICAgIDx2aWV3IGNsYXNzPSJmZWF0dXJlLWluZm8iPgogICAgICAgIDx0ZXh0IGNsYXNzPSJmZWF0dXJlLXRpdGxlIj57e2l0ZW0udGl0bGV9fTwvdGV4dD4KICAgICAgICA8dGV4dCBjbGFzcz0iZmVhdHVyZS1kZXNjIj57e2l0ZW0uZGVzY319PC90ZXh0PgogICAgICA8L3ZpZXc+CiAgICA8L3ZpZXc+CiAgPC92aWV3PgogIDx2aWV3IGNsYXNzPSJib3R0b20tYXJlYSI+CiAgICA8YnV0dG9uIGNsYXNzPSJidG4tcHJpbWFyeSIgYmluZHRhcD0iZ29Mb2dpbiI+5b6u5L+h5o6I5p2D55m75b2VPC9idXR0b24+CiAgICA8dGV4dCBjbGFzcz0iYWdyZWVtZW50Ij7nmbvlvZXljbPooajnpLrlkIzmhI/jgIrnlKjmiLfljY/orq7jgIvlkozjgIrpmpDnp4HmlL/nrZbjgIs8L3RleHQ+CiAgPC92aWV3Pgo8L3ZpZXc+Cg==
+<view class="container page-index">
+  <view class="hero">
+    <view class="logo-ring"><text class="logo-emoji">🌿</text></view>
+    <text class="title">A里味</text>
+    <text class="subtitle">A里味 — 你的职场情绪伙伴</text>
+  </view>
+  <view class="feature-list">
+    <view class="feature-card" wx:for="{{features}}" wx:key="title">
+      <text class="feature-icon">{{item.icon}}</text>
+      <view class="feature-info">
+        <text class="feature-title">{{item.title}}</text>
+        <text class="feature-desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="bottom-area">
+    <button class="btn-primary" bindtap="goLogin">微信授权登录</button>
+    <text class="agreement">登录即表示同意《用户协议》和《隐私政策》</text>
+  </view>
+</view>

@@ -1,1 +1,1 @@
-ZXhwb3J0IGRlZmF1bHQgZGVmaW5lUGFnZUNvbmZpZyh7IG5hdmlnYXRpb25CYXJUaXRsZVRleHQ6ICdB6YeM5ZGzJywgZGlzYWJsZVNjcm9sbDogdHJ1ZSB9KTsK
+export default definePageConfig({ navigationBarTitleText: 'A里味', disableScroll: true });

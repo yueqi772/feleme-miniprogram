@@ -1,1 +1,113 @@
-aW1wb3J0IHsgQ29tcG9uZW50IH0gZnJvbSAncmVhY3QnOwppbXBvcnQgeyBWaWV3LCBUZXh0LCBCdXR0b24sIEltYWdlIH0gZnJvbSAnQHRhcm9qcy9jb21wb25lbnRzJzsKaW1wb3J0IHsgdXNlUm91dGVyIH0gZnJvbSAnQHRhcm9qcy90YXJvJzsKaW1wb3J0ICcuL2luZGV4LnNjc3MnOwoKZXhwb3J0IGRlZmF1bHQgY2xhc3MgTG9naW4gZXh0ZW5kcyBDb21wb25lbnQgewogIHN0YXRlID0geyBsb2FkaW5nOiBmYWxzZSwgZXJyb3I6ICcnIH07CgogIGFzeW5jIGhhbmRsZUxvZ2luKCkgewogICAgdGhpcy5zZXRTdGF0ZSh7IGxvYWRpbmc6IHRydWUsIGVycm9yOiAnJyB9KTsKCiAgICB0cnkgewogICAgICAvLyBTdGVwIDE6IOiOt+WPluW+ruS/oeeZu+W9leWHreivge+8iGNvZGXvvIkKICAgICAgY29uc3QgbG9naW5SZXMgPSBhd2FpdCBuZXcgUHJvbWlzZSgocmVzb2x2ZSwgcmVqZWN0KSA9PiB7CiAgICAgICAgd3gubG9naW4oeyBzdWNjZXNzOiByZXNvbHZlLCBmYWlsOiByZWplY3QgfSk7CiAgICAgIH0pOwogICAgICBjb25zdCB7IGNvZGUgfSA9IGxvZ2luUmVzIGFzIGFueTsKCiAgICAgIGlmICghY29kZSkgewogICAgICAgIHRoaXMuc2V0U3RhdGUoeyBsb2FkaW5nOiBmYWxzZSwgZXJyb3I6ICfojrflj5bnmbvlvZXlh63or4HlpLHotKXvvIzor7fph43or5UnIH0pOwogICAgICAgIHJldHVybjsKICAgICAgfQoKICAgICAgLy8gU3RlcCAyOiDojrflj5bnlKjmiLfln7rmnKzkv6Hmga/vvIjmmLXnp7DjgIHlpLTlg4/vvIkKICAgICAgY29uc3QgcHJvZmlsZVJlcyA9IGF3YWl0IG5ldyBQcm9taXNlKChyZXNvbHZlLCByZWplY3QpID0+IHsKICAgICAgICB3eC5nZXRVc2VyUHJvZmlsZSh7CiAgICAgICAgICBkZXNjOiAn55So5LqO5bGV56S65oKo55qE5Liq5Lq65L+h5oGvJywKICAgICAgICAgIHN1Y2Nlc3M6IHJlc29sdmUsCiAgICAgICAgICBmYWlsOiByZWplY3QsCiAgICAgICAgfSk7CiAgICAgIH0pOwogICAgICBjb25zdCB1c2VySW5mbyA9IChwcm9maWxlUmVzIGFzIGFueSkudXNlckluZm87CgogICAgICAvLyBTdGVwIDM6IOaehOW7uueZu+W9leaVsOaNru+8iOWunumZheeUn+S6p+S4rSBjb2RlIOW6lOWPkeW+gOS9oOeahOWQjuerr+aNoiBvcGVuaWTvvIkKICAgICAgY29uc3QgbG9naW5EYXRhID0gewogICAgICAgIGNvZGUsCiAgICAgICAgbmlja25hbWU6IHVzZXJJbmZvLm5pY2tOYW1lLAogICAgICAgIGF2YXRhclVybDogdXNlckluZm8uYXZhdGFyVXJsLAogICAgICAgIGdlbmRlcjogdXNlckluZm8uZ2VuZGVyLCAvLyAxPeeUtywgMj3lpbMKICAgICAgICBwcm92aW5jZTogdXNlckluZm8ucHJvdmluY2UsCiAgICAgICAgY2l0eTogdXNlckluZm8uY2l0eSwKICAgICAgICBsb2dpblRpbWU6IERhdGUubm93KCksCiAgICAgIH07CgogICAgICAvLyBTdGVwIDQ6IOWtmOWCqOeZu+W9leaAgQogICAgICB3eC5zZXRTdG9yYWdlU3luYygnZmVsZW1lX2xvZ2luJywgbG9naW5EYXRhKTsKCiAgICAgIC8vIFN0ZXAgNTog6Lez6L2sIFdlYlZpZXcg6aG16Z2i77yM5pC65bim55m75b2V5pWw5o2uCiAgICAgIGNvbnN0IGVuY29kZWQgPSBlbmNvZGVVUklDb21wb25lbnQoSlNPTi5zdHJpbmdpZnkobG9naW5EYXRhKSk7CiAgICAgIHd4LnJlZGlyZWN0VG8oewogICAgICAgIHVybDogYC9wYWdlcy93ZWJ2aWV3L2luZGV4P2xvZ2luRGF0YT0ke2VuY29kZWR9JmZyb209bWluaXByb2dyYW1gLAogICAgICB9KTsKICAgIH0gY2F0Y2ggKGVycjogYW55KSB7CiAgICAgIGNvbnNvbGUuZXJyb3IoJ+eZu+W9leWksei0pScsIGVycik7CiAgICAgIGNvbnN0IG1zZyA9IGVycj8uZXJyTXNnIHx8ICcnOwogICAgICBpZiAobXNnLmluY2x1ZGVzKCdhdXRoIGRlbnknKSB8fCBtc2cuaW5jbHVkZXMoJ2NhbmNlbCcpKSB7CiAgICAgICAgdGhpcy5zZXRTdGF0ZSh7IGxvYWRpbmc6IGZhbHNlLCBlcnJvcjogJ+aCqOW3suaLkue7neaOiOadg++8jOWPr+mHjeaWsOeCueWHu+eZu+W9lScgfSk7CiAgICAgIH0gZWxzZSB7CiAgICAgICAgdGhpcy5zZXRTdGF0ZSh7IGxvYWRpbmc6IGZhbHNlLCBlcnJvcjogZXJyPy5lcnJNc2cgfHwgJ+eZu+W9leWksei0pe+8jOivt+mHjeivlScgfSk7CiAgICAgIH0KICAgIH0KICB9CgogIHJlbmRlcigpIHsKICAgIGNvbnN0IHsgbG9hZGluZywgZXJyb3IgfSA9IHRoaXMuc3RhdGU7CiAgICByZXR1cm4gKAogICAgICA8VmlldyBjbGFzc05hbWU9InBhZ2UiPgogICAgICAgIDxWaWV3IGNsYXNzTmFtZT0iaGVhZGVyIj4KICAgICAgICAgIDxWaWV3IGNsYXNzTmFtZT0ibG9nby1yaW5nIGxhcmdlIj4KICAgICAgICAgICAgPFRleHQgY2xhc3NOYW1lPSJsb2dvLWVtb2ppIj7wn4y/PC9UZXh0PgogICAgICAgICAgPC9WaWV3PgogICAgICAgICAgPFRleHQgY2xhc3NOYW1lPSJhcHAtbmFtZSI+QemHjOWRszwvVGV4dD4KICAgICAgICAgIDxUZXh0IGNsYXNzTmFtZT0id2VsY29tZSI+5qyi6L+O5L2/55SoPC9UZXh0PgogICAgICAgIDwvVmlldz4KCiAgICAgICAgPFZpZXcgY2xhc3NOYW1lPSJjYXJkIGluZm8tY2FyZCI+CiAgICAgICAgICA8VGV4dCBjbGFzc05hbWU9ImNhcmQtdGl0bGUiPueZu+W9leivtOaYjjwvVGV4dD4KICAgICAgICAgIDxWaWV3IGNsYXNzTmFtZT0iaW5mby1yb3ciPgogICAgICAgICAgICA8VGV4dCBjbGFzc05hbWU9ImluZm8taWNvbiI+8J+UkjwvVGV4dD4KICAgICAgICAgICAgPFRleHQgY2xhc3NOYW1lPSJpbmZvLXRleHQiPuaIkeS7rOS7heiOt+WPluaCqOeahOaYteensOWSjOWktOWDjzwvVGV4dD4KICAgICAgICAgIDwvVmlldz4KICAgICAgICAgIDxWaWV3IGNsYXNzTmFtZT0iaW5mby1yb3ciPgogICAgICAgICAgICA8VGV4dCBjbGFzc05hbWU9ImluZm8taWNvbiI+8J+aqzwvVGV4dD4KICAgICAgICAgICAgPFRleHQgY2xhc3NOYW1lPSJpbmZvLXRleHQiPuS4jeS8muiOt+WPluaJi+acuuWPt+OAgeS9jee9ruetieaVj+aEn+S/oeaBrzwvVGV4dD4KICAgICAgICAgIDwvVmlldz4KICAgICAgICAgIDxWaWV3IGNsYXNzTmFtZT0iaW5mby1yb3ciPgogICAgICAgICAgICA8VGV4dCBjbGFzc05hbWU9ImluZm8taWNvbiI+8J+TtDwvVGV4dD4KICAgICAgICAgICAgPFRleHQgY2xhc3NOYW1lPSJpbmZvLXRleHQiPuaVsOaNruS7heWtmOWCqOWcqOacrOWcsOWSjOaCqOeahOi0puWPt+S4izwvVGV4dD4KICAgICAgICAgIDwvVmlldz4KICAgICAgICA8L1ZpZXc+CgogICAgICAgIHtlcnJvciAmJiAoCiAgICAgICAgICA8VmlldyBjbGFzc05hbWU9ImVycm9yLXRpcCI+CiAgICAgICAgICAgIDxUZXh0IGNsYXNzTmFtZT0iZXJyb3ItdGV4dCI+e2Vycm9yfTwvVGV4dD4KICAgICAgICAgIDwvVmlldz4KICAgICAgICApfQoKICAgICAgICA8VmlldyBjbGFzc05hbWU9ImZvb3RlciI+CiAgICAgICAgICA8QnV0dG9uCiAgICAgICAgICAgIGNsYXNzTmFtZT0iYnRuLXdlY2hhdCIKICAgICAgICAgICAgbG9hZGluZz17bG9hZGluZ30KICAgICAgICAgICAgb25DbGljaz17dGhpcy5oYW5kbGVMb2dpbn0KICAgICAgICAgID4KICAgICAgICAgICAge2xvYWRpbmcgPyAn55m75b2V5Lit4oCmJyA6ICflvq7kv6HmjojmnYPnmbvlvZUnfQogICAgICAgICAgPC9CdXR0b24+CiAgICAgICAgICA8QnV0dG9uIGNsYXNzTmFtZT0iYnRuLWJhY2siIG9uQ2xpY2s9eygpID0+IHd4Lm5hdmlnYXRlQmFjaygpfT4KICAgICAgICAgICAg6L+U5ZueCiAgICAgICAgICA8L0J1dHRvbj4KICAgICAgICA8L1ZpZXc+CiAgICAgIDwvVmlldz4KICAgICk7CiAgfQp9Cg==
+import { Component } from 'react';
+import { View, Text, Button, Image } from '@tarojs/components';
+import { useRouter } from '@tarojs/taro';
+import './index.scss';
+
+export default class Login extends Component {
+  state = { loading: false, error: '' };
+
+  async handleLogin() {
+    this.setState({ loading: true, error: '' });
+
+    try {
+      // Step 1: 获取微信登录凭证（code）
+      const loginRes = await new Promise((resolve, reject) => {
+        wx.login({ success: resolve, fail: reject });
+      });
+      const { code } = loginRes as any;
+
+      if (!code) {
+        this.setState({ loading: false, error: '获取登录凭证失败，请重试' });
+        return;
+      }
+
+      // Step 2: 获取用户基本信息（昵称、头像）
+      const profileRes = await new Promise((resolve, reject) => {
+        wx.getUserProfile({
+          desc: '用于展示您的个人信息',
+          success: resolve,
+          fail: reject,
+        });
+      });
+      const userInfo = (profileRes as any).userInfo;
+
+      // Step 3: 构建登录数据（实际生产中 code 应发往你的后端换 openid）
+      const loginData = {
+        code,
+        nickname: userInfo.nickName,
+        avatarUrl: userInfo.avatarUrl,
+        gender: userInfo.gender, // 1=男, 2=女
+        province: userInfo.province,
+        city: userInfo.city,
+        loginTime: Date.now(),
+      };
+
+      // Step 4: 存储登录态
+      wx.setStorageSync('feleme_login', loginData);
+
+      // Step 5: 跳转 WebView 页面，携带登录数据
+      const encoded = encodeURIComponent(JSON.stringify(loginData));
+      wx.redirectTo({
+        url: `/pages/webview/index?loginData=${encoded}&from=miniprogram`,
+      });
+    } catch (err: any) {
+      console.error('登录失败', err);
+      const msg = err?.errMsg || '';
+      if (msg.includes('auth deny') || msg.includes('cancel')) {
+        this.setState({ loading: false, error: '您已拒绝授权，可重新点击登录' });
+      } else {
+        this.setState({ loading: false, error: err?.errMsg || '登录失败，请重试' });
+      }
+    }
+  }
+
+  render() {
+    const { loading, error } = this.state;
+    return (
+      <View className="page">
+        <View className="header">
+          <View className="logo-ring large">
+            <Text className="logo-emoji">🌿</Text>
+          </View>
+          <Text className="app-name">A里味</Text>
+          <Text className="welcome">欢迎使用</Text>
+        </View>
+
+        <View className="card info-card">
+          <Text className="card-title">登录说明</Text>
+          <View className="info-row">
+            <Text className="info-icon">🔒</Text>
+            <Text className="info-text">我们仅获取您的昵称和头像</Text>
+          </View>
+          <View className="info-row">
+            <Text className="info-icon">🚫</Text>
+            <Text className="info-text">不会获取手机号、位置等敏感信息</Text>
+          </View>
+          <View className="info-row">
+            <Text className="info-icon">📴</Text>
+            <Text className="info-text">数据仅存储在本地和您的账号下</Text>
+          </View>
+        </View>
+
+        {error && (
+          <View className="error-tip">
+            <Text className="error-text">{error}</Text>
+          </View>
+        )}
+
+        <View className="footer">
+          <Button
+            className="btn-wechat"
+            loading={loading}
+            onClick={this.handleLogin}
+          >
+            {loading ? '登录中…' : '微信授权登录'}
+          </Button>
+          <Button className="btn-back" onClick={() => wx.navigateBack()}>
+            返回
+          </Button>
+        </View>
+      </View>
+    );
+  }
+}
