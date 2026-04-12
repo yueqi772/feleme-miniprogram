@@ -7,7 +7,7 @@ export default defineAppConfig({
   window: {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#fff',
-    navigationBarTitleText: '职场清醒笔记',
+    navigationBarTitleText: 'A里味',
     navigationBarTextStyle: 'black',
   },
   tabBar: {
