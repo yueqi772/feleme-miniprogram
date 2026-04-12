@@ -33,7 +33,7 @@ Page({
         wx.cloud.callFunction({
           name: 'login',
           data: { code },
-          success: async (cloudRes) => {
+          success: (cloudRes) => {
             wx.hideLoading();
             const result = cloudRes.result;
 
@@ -41,19 +41,22 @@ Page({
               const loginData = result.data;
 
               // Step 3: 尝试初始化用户档案（写入数据库，失败不影响登录）
-              try {
-                const initRes = await wx.cloud.callFunction({
-                  name: 'initUser',
-                  data: { openid: loginData.openid },
-                });
-                console.log('initUser 返回:', initRes);
-              } catch (e) {
-                console.warn('initUser 失败（不影响登录）:', e);
-              }
-
+              // 注意：先跳转，再异步初始化，避免 initUser 超时导致 loading 卡住
               wx.setStorageSync('feleme_login_result', loginData);
               console.log('登录成功，跳转...');
               this.navigateToWebView(loginData);
+
+              // 后台异步初始化，不阻塞跳转
+              wx.cloud.callFunction({
+                name: 'initUser',
+                data: { openid: loginData.openid },
+                success: (initRes) => {
+                  console.log('initUser 返回:', initRes);
+                },
+                fail: (e) => {
+                  console.warn('initUser 失败（不影响登录）:', e);
+                },
+              });
             } else {
               console.error('login 云函数返回异常:', result);
               this.setData({ loading: false, errorMsg: result && result.error || '登录失败，请稍后重试' });
@@ -75,13 +78,13 @@ Page({
 
   /**
    * 跳转到 WebView 页面
-   * 登录数据存入 Storage，并通过 URL 参数传递给 webview 页面
+   * webview 是 tabBar 页面，必须用 switchTab（不支持 redirectTo 传参）
+   * 登录数据已存入 Storage，webview 页面从 Storage 读取
    */
   navigateToWebView(loginData) {
     wx.setStorageSync('feleme_login_result', loginData);
-    var param = encodeURIComponent(JSON.stringify(loginData));
-    wx.redirectTo({
-      url: '/pages/webview/index?loginData=' + param,
+    wx.switchTab({
+      url: '/pages/webview/index',
     });
   },
 
