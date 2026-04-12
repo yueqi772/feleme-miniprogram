@@ -1,5 +1,8 @@
 // WebView 页：加载 H5 并桥接数据库操作
-var H5_BASE = 'https://2w71e7bmbla4.space.minimaxi.com/';
+// var H5_BASE = 'https://2w71e7bmbla4.space.minimaxi.com/';
+var H5_BASE = 'http://localhost:5173/';
+
+
 
 Page({
   data: {
@@ -153,8 +156,7 @@ Page({
   // 调用云函数（统一入口）
   callCloud: function(name, data) {
     return new Promise(function(resolve) {
-      wx.cloud.call({
-        config: { env: 'cloudbase-3g22c9ce5bcf0e55' },
+      wx.cloud.callFunction({
         name: name,
         data: data,
         success: function(res) {
