@@ -1,1 +1,1 @@
-export default definePageConfig({ navigationBarTitleText: '职场清醒笔记', disableScroll: true });
+ZXhwb3J0IGRlZmF1bHQgZGVmaW5lUGFnZUNvbmZpZyh7IG5hdmlnYXRpb25CYXJUaXRsZVRleHQ6ICdB6YeM5ZGzJywgZGlzYWJsZVNjcm9sbDogdHJ1ZSB9KTsK
